@@ -12,7 +12,7 @@ config_version=5
 
 config/name="GEB2507 Final Project"
 run/main_scene="uid://bl3aaqxrm0c6c"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]

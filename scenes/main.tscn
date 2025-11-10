@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bl3aaqxrm0c6c"]
+[gd_scene load_steps=3 format=3 uid="uid://bl3aaqxrm0c6c"]
 
 [ext_resource type="Script" uid="uid://buhdaj6f8dgfm" path="res://scenes/node_2d.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://dkaeybwx1x0w6" path="res://scenes/sprite_2d.gd" id="2_0wfyh"]
 
 [node name="Main" type="Node3D"]
 
@@ -12,3 +13,6 @@ transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 
 
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("1_o5qli")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+script = ExtResource("2_0wfyh")

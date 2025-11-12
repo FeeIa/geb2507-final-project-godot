@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="GEB2507 Final Project"
+run/main_scene="uid://wu5i6gor5t34"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://scenes/managers/game_manager.tscn"
 
 [dotnet]
 

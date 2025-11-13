@@ -1,0 +1,9 @@
+{
+	"level_money": 10,
+	"lives": 20,
+	"waves": [
+		{"type": "influenza", "count": 5, "interval": 1.0},
+		{"type": "influenza", "count": 10, "interval": 0.5},
+		{"type": "influenza", "count": 25, "interval": 1.5},
+	]
+}

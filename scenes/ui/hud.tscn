@@ -7,14 +7,14 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_1x8ju")
 
-[node name="MoneyLabel" type="Label" parent="."]
+[node name="LevelMoney" type="Label" parent="."]
 layout_mode = 0
 offset_top = 26.0
 offset_right = 40.0
 offset_bottom = 49.0
 text = "Money: XX"
 
-[node name="LivesLabel" type="Label" parent="."]
+[node name="Lives" type="Label" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0

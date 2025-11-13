@@ -1,16 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1aohj6vm3ulp"]
 
-[ext_resource type="Texture2D" uid="uid://c5fuj1kn1npmv" path="res://icon.svg" id="1_by3tn"]
-[ext_resource type="Script" uid="uid://doct4af3fslko" path="res://scripts/core/tower.gd" id="1_g767u"]
+[ext_resource type="Texture2D" uid="uid://c5fuj1kn1npmv" path="res://assets/enemies/default.svg" id="1_by3tn"]
+[ext_resource type="Script" uid="uid://doct4af3fslko" path="res://scripts/towers/base_tower.gd" id="1_g767u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g767u"]
 radius = 75.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vfpy0"]
-radius = 250.0
+radius = 0.01
 
 [node name="Tower" type="StaticBody2D"]
 script = ExtResource("1_g767u")
+tower_type = "phagocyte"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_by3tn")
@@ -19,6 +20,7 @@ texture = ExtResource("1_by3tn")
 shape = SubResource("CircleShape2D_g767u")
 
 [node name="FireTimer" type="Timer" parent="."]
+autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]
 

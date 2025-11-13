@@ -1,0 +1,7 @@
+{
+	"hp": 80,
+	"speed": 120,
+	"level_money_drop": 10,
+	"lives_damage": 1,
+	"resistances": {"phagocyte": 0.3, "bcell": 0.1},
+}

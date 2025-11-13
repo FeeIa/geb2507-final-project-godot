@@ -13,11 +13,17 @@ config_version=5
 config/name="GEB2507 Final Project"
 run/main_scene="uid://wu5i6gor5t34"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/enemies/default.svg"
 
 [autoload]
 
 GameManager="*res://scenes/managers/game_manager.tscn"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="viewport"
 
 [dotnet]
 

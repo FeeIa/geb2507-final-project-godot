@@ -1,38 +1,83 @@
 extends Node
 
 # Signals
-signal money_changed
+signal level_money_changed
+signal global_money_changed
 signal lives_changed
-signal wave_started
-signal wave_cleared
-signal game_over_signal
+signal level_completed
+signal game_over
 
-# Variables
-var money: int = 100
-var lives: int = 10
-var current_wave: int = 0
-var is_game_over: bool = false
+# Constants
+const DEFAULT_LEVEL_MONEY = 10
+const DEFAULT_LIVES = 10
 
-func add_money(amt: int):
-	money += amt
-	emit_signal("money_changed", money)
+# Global currency
+var global_money: int = 0
+
+# Level-specific currency & stats
+var level_money: int = 0
+var lives: int = 0
+var current_level: String = "" 
+
+# Load specific level based on the JSON data
+# Params: level_name
+func load_level(level_name: String):
+	var file = FileAccess.open("res://data/levels/%s.json" % level_name, FileAccess.READ)
+	if file:
+		var data = JSON.parse_string(file.get_as_text())
+		if not data:
+			print("[ERROR] Empty JSON data for " + str(level_name))
+			return
+
+		level_money = data.get("level_money", DEFAULT_LEVEL_MONEY)
+		lives = data.get("lives", DEFAULT_LIVES)
+
+		file.close()
+	else:
+		print("[ERROR] No JSON file for " + str(level_name) + " was found!")
+		return
+		
+	current_level = level_name
+	level_money_changed.emit()
+	lives_changed.emit()
 	
-func deduct_money(amt: int):
-	add_money(-amt)
+# Add level money
+# Params: amount
+func add_level_money(amount: int):
+	level_money += amount
+	level_money_changed.emit()
 	
-func lose_life():
-	lives -= 1
-	emit_signal("lives_changed", lives)
+func spend_level_money(amount: int) -> bool:
+	if level_money >= amount:
+		add_level_money(-amount)
+		return true
+	return false
+
+# Add global money
+func add_global_money(amount: int):
+	global_money += amount
+	global_money_changed.emit()
+	
+func spend_global_money(amount: int) -> bool:
+	if global_money >= amount:
+		add_level_money(-amount)
+		return true
+	return false
+	
+# Take away life
+# Params: amount (optional)
+func lose_life(amount: int = 1):
+	lives -= amount
+	lives_changed.emit()
+	
 	if lives <= 0:
-		game_over()
+		game_over.emit()
 		
-func start_wave():
-	current_wave += 1
-	emit_signal("wave_started", current_wave)
-	
-func clear_wave():
-	emit_signal("wave_cleared", current_wave)
-		
-func game_over():
-	print("GAME OVER!")	
-	emit_signal("game_over_signal")
+# Level completed/finished
+func complete_level():
+	level_completed.emit()
+
+#func _ready():
+	#load_level("level_1")
+	#print(level_money)
+	#print(lives)	

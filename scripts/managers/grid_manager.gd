@@ -1,0 +1,58 @@
+extends Node2D
+
+# Config
+@export var grid_width := 12
+@export var grid_height := 6
+@export var cell_size := 135
+
+# States
+var occupied_cells: Array[Vector2i] = [] # where towers exist
+var blocked_cells: Array[Vector2i] = [] # path/obstacles
+var hover_cell := Vector2i(-1, -1)
+@onready var viewport_size = get_viewport_rect().size
+@onready var offset = (viewport_size - Vector2(grid_width * cell_size, grid_height * cell_size)) / 2
+
+func is_cell_inside(cell: Vector2i) -> bool:
+	return cell.x >= 0 and cell.x < grid_width and cell.y >= 0 and cell.y < grid_height
+	
+func is_cell_valid(cell: Vector2i) -> bool:
+	return is_cell_inside(cell) and cell not in occupied_cells and cell not in blocked_cells
+	
+# Converts world position to grid position
+func world_to_grid(world_pos: Vector2) -> Vector2i:
+	var local_pos: Vector2 = world_pos - offset
+	return Vector2i(floor(local_pos.x) / cell_size, floor(local_pos.y) / cell_size)
+	
+# Converts grid position to world position (center point of the cell)
+func grid_to_world(cell: Vector2i) -> Vector2:
+	return Vector2(cell.x * cell_size + cell_size / 2, cell.y * cell_size + cell_size / 2) + offset
+	
+# Occupy a cell
+func occupy_cell(cell: Vector2i):
+	if is_cell_valid(cell):
+		occupied_cells.append(cell)
+		
+# Free a cell
+func free_cell(cell: Vector2i):
+	if cell in occupied_cells:
+		occupied_cells.erase(cell)
+
+# JUST FOR VISUALIZATION
+func _ready():
+	occupy_cell(Vector2i(0, 0))
+	occupy_cell(Vector2i(0, 1))
+	blocked_cells.append(Vector2i(3,4))
+func _draw():
+	for x in range(grid_width):
+		for y in range(grid_height):
+			var rect = Rect2(Vector2(x, y) * cell_size + offset, Vector2(cell_size, cell_size))
+			draw_rect(rect, Color(1,1,1,0.05), true)
+			draw_rect(rect, Color(1,1,1,0.2), false)
+
+	for cell in blocked_cells:
+		var rect = Rect2(Vector2(cell) * cell_size + offset, Vector2(cell_size, cell_size))
+		draw_rect(rect, Color(1,0,0,0.2), true)
+
+	for cell in occupied_cells:
+		var rect = Rect2(Vector2(cell) * cell_size + offset, Vector2(cell_size, cell_size))
+		draw_rect(rect, Color(0,0,1,0.2), true)

@@ -14,19 +14,24 @@ var hover_cell := Vector2i(-1, -1)
 
 func is_cell_inside(cell: Vector2i) -> bool:
 	return cell.x >= 0 and cell.x < grid_width and cell.y >= 0 and cell.y < grid_height
-	
+
 func is_cell_valid(cell: Vector2i) -> bool:
 	return is_cell_inside(cell) and cell not in occupied_cells and cell not in blocked_cells
-	
+
 # Converts world position to grid position
 func world_to_grid(world_pos: Vector2) -> Vector2i:
 	var local_pos: Vector2 = world_pos - offset
 	return Vector2i(floor(local_pos.x) / cell_size, floor(local_pos.y) / cell_size)
-	
+
 # Converts grid position to world position (center point of the cell)
 func grid_to_world(cell: Vector2i) -> Vector2:
 	return Vector2(cell.x * cell_size + cell_size / 2, cell.y * cell_size + cell_size / 2) + offset
-	
+
+# Make a cell as blocked
+func turn_cell_to_blocked(cell: Vector2i):
+	if is_cell_valid(cell):
+		blocked_cells.append(cell)
+
 # Occupy a cell
 func occupy_cell(cell: Vector2i):
 	if is_cell_valid(cell):
@@ -38,10 +43,10 @@ func free_cell(cell: Vector2i):
 		occupied_cells.erase(cell)
 
 # JUST FOR VISUALIZATION
-func _ready():
-	occupy_cell(Vector2i(0, 0))
-	occupy_cell(Vector2i(0, 1))
-	blocked_cells.append(Vector2i(3,4))
+#func _ready():
+	#occupy_cell(Vector2i(0, 0))
+	#occupy_cell(Vector2i(0, 1))
+	#blocked_cells.append(Vector2i(3,4))
 func _draw():
 	for x in range(grid_width):
 		for y in range(grid_height):

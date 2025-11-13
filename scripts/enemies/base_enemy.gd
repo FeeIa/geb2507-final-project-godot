@@ -7,25 +7,30 @@ var speed: float
 var level_money_drop: int
 var lives_damage: int
 var resistances = {}
-var path_follow: PathFollow2D
+var path_points = []
+var curr_path_idx = 0
 
 func _ready():
 	if enemy_type:
 		load_stats()
 		
-	if path_follow:
-		path_follow.progress_ratio = 0
-		global_position = path_follow.global_position
+	if !path_points.is_empty():
+		global_position = path_points[0]
 	
 	add_to_group("enemies")
 		
 func _process(delta: float):
-	if path_follow:
-		path_follow.progress_ratio += speed * delta / 1000
-		global_position = path_follow.global_position
+	if curr_path_idx >= path_points.size():
+		reached_base()
+		queue_free()
+		return
 		
-		if path_follow.progress_ratio >= 0.98:
-			reached_base()
+	var target = path_points[curr_path_idx]
+	var dir = (target - global_position).normalized()
+	global_position += dir * speed * delta
+	
+	if global_position.distance_to(target) < 10:
+		curr_path_idx += 1
 
 # Load the enemy stats
 func load_stats():

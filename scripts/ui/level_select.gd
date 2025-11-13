@@ -7,4 +7,3 @@ func _ready():
 
 func _start_level(level_name: String):
 	get_tree().change_scene_to_file("res://scenes/levels/%s.tscn" % level_name)
-	GameManager.load_level(level_name)

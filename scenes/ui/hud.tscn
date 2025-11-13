@@ -22,6 +22,13 @@ text = "Lives: XX"
 
 [node name="StartWave" type="Button" parent="."]
 layout_mode = 0
-offset_top = 62.0
-offset_right = 8.0
-offset_bottom = 70.0
+offset_top = 55.0
+offset_right = 192.0
+offset_bottom = 76.0
+
+[node name="Place" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 88.0
+offset_right = 189.0
+offset_bottom = 113.0

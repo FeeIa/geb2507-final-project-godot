@@ -5,6 +5,7 @@ var data = {}
 var damage: int
 var fire_rate: float
 var attack_radius: float
+var cost: int
 
 var current_target: Node = null
 var target_queue: Array[Node] = []
@@ -25,7 +26,8 @@ func _ready():
 				current_target = null
 				
 			if !target_queue.is_empty():
-				current_target = target_queue.front()
+				if is_instance_valid(target_queue.front()):
+					current_target = target_queue.front()
 				target_queue.pop_front()
 		)
 		$FireTimer.connect("timeout", _on_FireTimer_timeout)
@@ -45,6 +47,7 @@ func load_stats():
 	damage = data.get("damage", 20)
 	attack_radius = data.get("attach_radius", 150.0)
 	fire_rate = data.get("fire_rate", 1.0)
+	cost = data.get("cost", 10)
 	
 	$Area2D/CollisionShape2D.shape.radius = attack_radius
 	$Sprite2D.texture = load(data.get("texture", "res://assets/towers/default.svg"))
@@ -58,6 +61,6 @@ func shoot(enemy):
 	proj.damage = damage
 	proj.tower_type = tower_type
 	proj.global_position = global_position
-	proj.target = current_target
+	proj.target = enemy
 	
 	get_parent().add_child(proj)

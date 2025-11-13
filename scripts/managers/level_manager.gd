@@ -1,26 +1,46 @@
 extends Node
 
-@export var path: Path2D
 @export var level_name: String
+@export var grid_manager: Node
+
 var waves = []
+var path_cells = []
 var current_wave_idx = 0
 
 var is_spawning: bool = false
 
 func _ready():
 	if level_name:
-		load_waves()
+		load_level()
 	else:
-		print("[ERROR] Missing level_name in WaveManager")
+		print("[ERROR] Missing level_name in LevelManager")
 
-# Load wave from JSON file
+# Load specific level based on the JSON data
 # Params: level_name
-func load_waves():
+func load_level():
 	var file = FileAccess.open("res://data/levels/%s.json" % level_name, FileAccess.READ)
 	if file:
 		var data = JSON.parse_string(file.get_as_text())
+		if not data:
+			print("[ERROR] Empty JSON data for " + str(level_name))
+			return
+
+		GameManager.level_money = data.get("level_money", 50)
+		GameManager.lives = data.get("lives", 20)
 		waves = data["waves"]
+		path_cells = data["path"]
+		
+		for cell in path_cells:
+			grid_manager.turn_cell_to_blocked(Vector2i(cell[0], cell[1]))
+		
 		file.close()
+	else:
+		print("[ERROR] No JSON file for " + str(level_name) + " was found!")
+		return
+		
+	GameManager.current_level = level_name
+	GameManager.level_money_changed.emit()
+	GameManager.lives_changed.emit()
 
 # Start the next wave when called
 func start_next_wave():
@@ -49,10 +69,8 @@ func spawn_enemy(enemy_id: String):
 	var e = preload("res://scenes/enemies/base_enemy.tscn").instantiate()
 	e.enemy_type = enemy_id
 	
-	var pf = PathFollow2D.new()
-	path.add_child(pf)
-	pf.loop = false
-	pf.progress_ratio = 0.0
+	for cell in path_cells:
+		var world_pos: Vector2 = grid_manager.grid_to_world(Vector2i(cell[0], cell[1]))
+		e.path_points.append(world_pos)
 	
-	e.path_follow = pf
-	pf.add_child(e)
+	get_parent().add_child(e)

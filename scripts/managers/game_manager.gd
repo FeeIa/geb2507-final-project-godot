@@ -18,28 +18,6 @@ var global_money: int = 0
 var level_money: int = 0
 var lives: int = 0
 var current_level: String = "" 
-
-# Load specific level based on the JSON data
-# Params: level_name
-func load_level(level_name: String):
-	var file = FileAccess.open("res://data/levels/%s.json" % level_name, FileAccess.READ)
-	if file:
-		var data = JSON.parse_string(file.get_as_text())
-		if not data:
-			print("[ERROR] Empty JSON data for " + str(level_name))
-			return
-
-		level_money = data.get("level_money", DEFAULT_LEVEL_MONEY)
-		lives = data.get("lives", DEFAULT_LIVES)
-
-		file.close()
-	else:
-		print("[ERROR] No JSON file for " + str(level_name) + " was found!")
-		return
-		
-	current_level = level_name
-	level_money_changed.emit()
-	lives_changed.emit()
 	
 # Add level money
 # Params: amount
@@ -72,7 +50,7 @@ func lose_life(amount: int = 1):
 	
 	if lives <= 0:
 		game_over.emit()
-		
+
 # Level completed/finished
 func complete_level():
 	level_completed.emit()

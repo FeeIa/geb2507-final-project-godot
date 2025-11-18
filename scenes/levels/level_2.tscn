@@ -1,3 +1,26 @@
-[gd_scene format=3 uid="uid://comxx4fatil0f"]
+[gd_scene load_steps=6 format=3 uid="uid://comxx4fatil0f"]
+
+[ext_resource type="PackedScene" uid="uid://dahyjrhrrmadj" path="res://scenes/managers/level_manager.tscn" id="1_j2425"]
+[ext_resource type="PackedScene" uid="uid://b8av088iu0opx" path="res://scenes/ui/hud.tscn" id="2_ra442"]
+[ext_resource type="PackedScene" uid="uid://be2urwsaj6pqr" path="res://scenes/managers/grid_manager.tscn" id="3_fiq81"]
+[ext_resource type="PackedScene" uid="uid://cuthboifek61e" path="res://scenes/managers/placement_manager.tscn" id="4_fiq81"]
+[ext_resource type="Texture2D" uid="uid://mlbkyrnpphn3" path="res://assets/characters/main/maincharactor_fever.png" id="5_l37oo"]
 
 [node name="Level2" type="Node2D"]
+
+[node name="LevelManager" parent="." node_paths=PackedStringArray("grid_manager") instance=ExtResource("1_j2425")]
+level_name = "level_2"
+grid_manager = NodePath("../GridManager")
+
+[node name="Hud" parent="." instance=ExtResource("2_ra442")]
+placement_manager_path = NodePath("../PlacementManager")
+
+[node name="GridManager" parent="." instance=ExtResource("3_fiq81")]
+
+[node name="PlacementManager" parent="." instance=ExtResource("4_fiq81")]
+grid_manager_path = NodePath("../GridManager")
+
+[node name="Character" type="Sprite2D" parent="."]
+position = Vector2(83.000015, 965)
+scale = Vector2(0.18711878, 0.18711878)
+texture = ExtResource("5_l37oo")

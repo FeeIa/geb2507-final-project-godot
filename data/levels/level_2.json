@@ -1,0 +1,33 @@
+{
+	"level_money": 100,
+	"lives": 25,
+	"waves": [
+		{"type": "test", "count": 50, "interval": 0.1},
+		{"type": "influenza", "count": 100, "interval": 0.1},
+		{"type": "cancer", "count": 10, "interval": 0.25},
+		{"type": "cancer", "count": 20, "interval": 0.15},
+		{"type": "cancer", "count": 50, "interval": 0.1},
+		{"type": "cancer", "count": 100, "interval": 0.05},
+		{"type": "cancer", "count": 500, "interval": 0.01},
+	],
+	"path": [
+		[0, 4],
+		[1, 4],
+		[2, 4],
+		[2, 3],
+		[2, 2],
+		[2, 1],
+		[3, 1],
+		[4, 1],
+		[5, 1],
+		[5, 2],
+		[5, 3],
+		[6, 3],
+		[7, 3],
+		[7, 4],
+		[8, 4],
+		[9, 4],
+		[10, 4],
+		[11, 4],
+	]
+}

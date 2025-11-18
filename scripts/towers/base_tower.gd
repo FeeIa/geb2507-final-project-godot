@@ -18,6 +18,9 @@ func _ready():
 			
 			target_queue.push_back(body)
 			if not current_target:
+				while !is_instance_valid(target_queue.front()):
+					target_queue.pop_front()
+					
 				current_target = target_queue.front()
 				target_queue.pop_front()
 		)
@@ -45,7 +48,7 @@ func load_stats():
 	
 	data = JSON.parse_string(file.get_as_text())
 	damage = data.get("damage", 20)
-	attack_radius = data.get("attach_radius", 150.0)
+	attack_radius = data.get("attack_radius", 150.0)
 	fire_rate = data.get("fire_rate", 1.0)
 	cost = data.get("cost", 10)
 	

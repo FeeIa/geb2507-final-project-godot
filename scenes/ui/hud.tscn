@@ -14,6 +14,14 @@ offset_right = 40.0
 offset_bottom = 49.0
 text = "Money: XX"
 
+[node name="Waves" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 54.0
+offset_right = 82.0
+offset_bottom = 77.0
+text = "Wave: XX"
+
 [node name="Lives" type="Label" parent="."]
 layout_mode = 0
 offset_right = 40.0
@@ -22,13 +30,14 @@ text = "Lives: XX"
 
 [node name="StartWave" type="Button" parent="."]
 layout_mode = 0
-offset_top = 55.0
-offset_right = 192.0
-offset_bottom = 76.0
+offset_left = 2.0
+offset_top = 127.0
+offset_right = 194.0
+offset_bottom = 148.0
 
 [node name="Place" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 88.0
-offset_right = 189.0
-offset_bottom = 113.0
+offset_left = 3.0
+offset_top = 160.0
+offset_right = 191.0
+offset_bottom = 185.0

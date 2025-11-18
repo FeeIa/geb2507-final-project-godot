@@ -18,6 +18,7 @@ config/icon="res://assets/enemies/default.svg"
 [autoload]
 
 GameManager="*res://scenes/managers/game_manager.tscn"
+FadeTransition="*res://scenes/ui/fade_transition.tscn"
 
 [display]
 

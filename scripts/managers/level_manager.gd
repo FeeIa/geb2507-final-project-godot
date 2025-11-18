@@ -8,6 +8,7 @@ var path_cells = []
 var current_wave_idx = 0
 
 var is_spawning: bool = false
+var can_spawn: bool = true
 
 func _ready():
 	if level_name:
@@ -38,23 +39,26 @@ func load_level():
 		print("[ERROR] No JSON file for " + str(level_name) + " was found!")
 		return
 		
+	GameManager.current_wave = current_wave_idx
 	GameManager.current_level = level_name
 	GameManager.level_money_changed.emit()
 	GameManager.lives_changed.emit()
 
 # Start the next wave when called
 func start_next_wave():
+	if is_spawning or !can_spawn:
+		return
+		
 	if current_wave_idx >= waves.size():
 		GameManager.complete_level()
 		return
 		
+	GameManager.complete_wave()
 	spawn_wave(waves[current_wave_idx])
 	current_wave_idx += 1
 
 # Spawn the wave
 func spawn_wave(wave_data: Dictionary):
-	if is_spawning:
-		return
 	is_spawning = true
 	
 	var t = wave_data["type"]

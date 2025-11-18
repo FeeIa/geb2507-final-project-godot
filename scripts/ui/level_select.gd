@@ -1,9 +1,9 @@
 extends Control
 
 func _ready():
-	$VBoxContainer/Level_1.pressed.connect(func(): _start_level("level_1"))
-	$VBoxContainer/Level_2.pressed.connect(func(): _start_level("level_2"))
-	$VBoxContainer/Back.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn"))
-
-func _start_level(level_name: String):
-	get_tree().change_scene_to_file("res://scenes/levels/%s.tscn" % level_name)
+	$Level_1.pressed.connect(func(): GameManager.load_level_scene("level_1"))
+	$Level_2.pressed.connect(func(): GameManager.load_level_scene("level_2"))
+	$Level_3.pressed.connect(func(): GameManager.load_level_scene("level_3"))
+	$Level_4.pressed.connect(func(): GameManager.load_level_scene("level_4"))
+	$Level_5.pressed.connect(func(): GameManager.load_level_scene("level_5"))
+	$Back.pressed.connect(func(): FadeTransition.transition_to_scene("res://scenes/ui/main_menu.tscn"))

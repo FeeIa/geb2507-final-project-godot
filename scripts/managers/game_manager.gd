@@ -4,6 +4,7 @@ extends Node
 signal level_money_changed
 signal global_money_changed
 signal lives_changed
+signal wave_completed
 signal level_completed
 signal game_over
 
@@ -18,13 +19,20 @@ var global_money: int = 0
 var level_money: int = 0
 var lives: int = 0
 var current_level: String = "" 
+var current_wave: int = 0
+
+# Load level scene
+# Params: level_name
+func load_level_scene(level_name: String):
+	FadeTransition.transition_to_scene("res://scenes/levels/%s.tscn" % level_name)
 	
 # Add level money
 # Params: amount
 func add_level_money(amount: int):
 	level_money += amount
 	level_money_changed.emit()
-	
+
+# Spend level money
 func spend_level_money(amount: int) -> bool:
 	if level_money >= amount:
 		add_level_money(-amount)
@@ -36,6 +44,7 @@ func add_global_money(amount: int):
 	global_money += amount
 	global_money_changed.emit()
 	
+# Spend global mmoney
 func spend_global_money(amount: int) -> bool:
 	if global_money >= amount:
 		add_level_money(-amount)
@@ -50,6 +59,11 @@ func lose_life(amount: int = 1):
 	
 	if lives <= 0:
 		game_over.emit()
+
+func complete_wave():
+	current_wave += 1
+	wave_completed.emit()
+	add_level_money(100)
 
 # Level completed/finished
 func complete_level():

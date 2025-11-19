@@ -5,6 +5,7 @@ signal level_money_changed
 signal global_money_changed
 signal lives_changed
 signal wave_completed
+signal wave_changed
 signal level_completed
 signal game_over
 
@@ -14,6 +15,8 @@ const DEFAULT_LIVES = 10
 
 # Global currency
 var global_money: int = 0
+var highest_level_completed: int = 0
+var current_playing_level: int = 0
 
 # Level-specific currency & stats
 var level_money: int = 0
@@ -23,9 +26,14 @@ var current_wave: int = 0
 
 # Load level scene
 # Params: level_name
-func load_level_scene(level_name: String):
-	FadeTransition.transition_to_scene("res://scenes/levels/%s.tscn" % level_name)
-	
+func load_level_scene(level: int):
+	if level <= highest_level_completed + 1:
+		FadeTransition.transition_to_scene("res://scenes/levels/level_%d.tscn" % level)
+		current_playing_level = level
+	else:
+		print("Please complete the previous level first!")
+		
+
 # Add level money
 # Params: amount
 func add_level_money(amount: int):
@@ -60,13 +68,19 @@ func lose_life(amount: int = 1):
 	if lives <= 0:
 		game_over.emit()
 
+# Complete wave and reward monyy
 func complete_wave():
-	current_wave += 1
-	wave_completed.emit()
 	add_level_money(100)
+	wave_completed.emit()
+
+# Start next wave
+func start_next_wave():
+	current_wave += 1
+	wave_changed.emit()
 
 # Level completed/finished
 func complete_level():
+	highest_level_completed = max(highest_level_completed, current_playing_level)
 	level_completed.emit()
 
 #func _ready():

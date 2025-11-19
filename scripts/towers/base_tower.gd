@@ -53,6 +53,7 @@ func load_stats():
 	cost = data.get("cost", 10)
 	
 	$Area2D/CollisionShape2D.shape.radius = attack_radius
+	$FireTimer.wait_time = fire_rate
 	$Sprite2D.texture = load(data.get("texture", "res://assets/towers/default.svg"))
 
 func _on_FireTimer_timeout():

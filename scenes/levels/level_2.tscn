@@ -8,9 +8,10 @@
 
 [node name="Level2" type="Node2D"]
 
-[node name="LevelManager" parent="." node_paths=PackedStringArray("grid_manager") instance=ExtResource("1_j2425")]
+[node name="LevelManager" parent="." node_paths=PackedStringArray("grid_manager", "enemy_container") instance=ExtResource("1_j2425")]
 level_name = "level_2"
 grid_manager = NodePath("../GridManager")
+enemy_container = NodePath("../EnemyContainer")
 
 [node name="Hud" parent="." instance=ExtResource("2_ra442")]
 placement_manager_path = NodePath("../PlacementManager")
@@ -24,3 +25,5 @@ grid_manager_path = NodePath("../GridManager")
 position = Vector2(83.000015, 965)
 scale = Vector2(0.18711878, 0.18711878)
 texture = ExtResource("5_l37oo")
+
+[node name="EnemyContainer" type="Node" parent="."]

@@ -28,7 +28,7 @@ var current_wave: int = 0
 # Params: level_name
 func load_level_scene(level: int):
 	if level <= highest_level_completed + 1:
-		FadeTransition.transition_to_scene("res://scenes/levels/level_%d.tscn" % level)
+		FadeTransition.transition_to_scene("res://scenes/levels/level_%d/map.tscn" % level)
 		current_playing_level = level
 	else:
 		print("Please complete the previous level first!")

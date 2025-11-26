@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cc73mu77u4ccc"]
+
+[ext_resource type="Texture2D" uid="uid://dg5gsbd7riwjf" path="res://assets/ui/levels/level_1/intro/charactor_self_intro_withoutclicktips_greybg.png" id="1_tcn67"]
+
+[node name="Intro_tscn" type="Node2D"]
+
+[node name="ClickableArea" type="Area2D" parent="."]
+
+[node name="Background" type="ColorRect" parent="ClickableArea"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.49019608)
+
+[node name="Info" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_tcn67")

@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://drw30mlgpj6e0"]
+
+[ext_resource type="PackedScene" uid="uid://dahyjrhrrmadj" path="res://scenes/managers/level_manager.tscn" id="1_06ted"]
+[ext_resource type="Texture2D" uid="uid://cfjy1j5lcvcii" path="res://assets/ui/levels/level_1/map/mouth.png" id="2_dmms2"]
+[ext_resource type="Texture2D" uid="uid://23sk07wn05f" path="res://assets/ui/levels/level_1/map/level1.png" id="3_2t0o2"]
+[ext_resource type="PackedScene" uid="uid://be2urwsaj6pqr" path="res://scenes/managers/grid_manager.tscn" id="4_fjy8c"]
+[ext_resource type="PackedScene" uid="uid://cuthboifek61e" path="res://scenes/managers/placement_manager.tscn" id="5_83pdl"]
+[ext_resource type="Texture2D" uid="uid://d3y7nav0gax2g" path="res://assets/ui/levels/level_1/map/Q_maincharacter.png" id="6_vla06"]
+[ext_resource type="Texture2D" uid="uid://8lrlm8albf0r" path="res://assets/ui/levels/level_1/map/teeth.png" id="7_mohx4"]
+[ext_resource type="PackedScene" uid="uid://b8av088iu0opx" path="res://scenes/ui/hud.tscn" id="8_lxak7"]
+[ext_resource type="PackedScene" uid="uid://7e5l5tjs8soe" path="res://scenes/ui/level_hud.tscn" id="9_5wyq2"]
+[ext_resource type="PackedScene" uid="uid://cc73mu77u4ccc" path="res://scenes/levels/level_1/intro.tscn" id="10_s7f0m"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="LevelManager" parent="." node_paths=PackedStringArray("grid_manager", "enemy_container") instance=ExtResource("1_06ted")]
+level_name = "level_1"
+grid_manager = NodePath("../GridManager")
+enemy_container = NodePath("../EnemyContainer")
+
+[node name="Mouth" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_dmms2")
+
+[node name="Grid" type="TextureRect" parent="."]
+offset_right = 1928.0
+offset_bottom = 1116.0
+texture = ExtResource("3_2t0o2")
+
+[node name="GridManager" parent="." instance=ExtResource("4_fjy8c")]
+visible = false
+center_offset = Vector2(6, 82.5)
+
+[node name="PlacementManager" parent="." instance=ExtResource("5_83pdl")]
+grid_manager_path = NodePath("../GridManager")
+
+[node name="EnemyContainer" type="Node" parent="."]
+
+[node name="MainCharacter" type="TextureRect" parent="."]
+offset_left = 1453.0
+offset_top = 742.0
+offset_right = 1648.0
+offset_bottom = 956.0
+texture = ExtResource("6_vla06")
+
+[node name="Teeth" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_mohx4")
+
+[node name="Hud" parent="." instance=ExtResource("8_lxak7")]
+visible = false
+placement_manager_path = NodePath("../PlacementManager")
+
+[node name="LevelHUD" parent="." node_paths=PackedStringArray("Intro") instance=ExtResource("9_5wyq2")]
+Intro = NodePath("../Intro")
+
+[node name="Intro" parent="." instance=ExtResource("10_s7f0m")]

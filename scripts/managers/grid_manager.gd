@@ -1,16 +1,17 @@
 extends Node2D
 
 # Config
-@export var grid_width := 12
-@export var grid_height := 6
-@export var cell_size := 135
+@export var grid_width := 10
+@export var grid_height := 5
+@export var cell_size := 130
+@export var center_offset: Vector2 = Vector2(0, 0)
 
 # States
 var occupied_cells: Array[Vector2i] = [] # where towers exist
 var blocked_cells: Array[Vector2i] = [] # path/obstacles
 var hover_cell := Vector2i(-1, -1)
 @onready var viewport_size = get_viewport_rect().size
-@onready var offset = (viewport_size - Vector2(grid_width * cell_size, grid_height * cell_size)) / 2
+@onready var offset = (viewport_size - Vector2(grid_width * cell_size, grid_height * cell_size)) / 2 + center_offset
 
 func is_cell_inside(cell: Vector2i) -> bool:
 	return cell.x >= 0 and cell.x < grid_width and cell.y >= 0 and cell.y < grid_height
@@ -56,8 +57,8 @@ func _draw():
 
 	for cell in blocked_cells:
 		var rect = Rect2(Vector2(cell) * cell_size + offset, Vector2(cell_size, cell_size))
-		draw_rect(rect, Color(1,0,0,0.2), true)
+		draw_rect(rect, Color(1,0,0,0.6), true)
 
 	for cell in occupied_cells:
 		var rect = Rect2(Vector2(cell) * cell_size + offset, Vector2(cell_size, cell_size))
-		draw_rect(rect, Color(0,0,1,0.2), true)
+		draw_rect(rect, Color(0,0,1,0.6), true)

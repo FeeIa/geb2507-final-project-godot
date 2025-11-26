@@ -1,0 +1,6 @@
+{
+	"damage": 20,
+	"fire_rate": 1.0,
+	"attack_radius": 300.0,
+	"cost": 5
+}

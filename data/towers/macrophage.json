@@ -1,0 +1,43 @@
+{
+	"props": {
+		"level_1": {
+			"damage": 0,
+			"cost": 20,
+			"cell_range": 1,
+			"attack_radius": 300,
+			"attack_rate": 2
+		},
+		"level_2": {
+			"damage": 1000,
+			"cost": 30,
+			"cell_range": 2,
+			"attack_radius": 300,
+			"attack_rate": 0.1,
+		},
+		"level_3": {
+			"damage": 0,
+			"cost": 40,
+			"cell_range": 2,
+			"attack_radius": 300,
+			"attack_rate": 1,
+		}
+	},
+	
+	"textures": {
+		"level_1": {
+			"base": "res://assets/towers/macrophage/level_1/no_eat.png",
+			"eat_1": "res://assets/towers/macrophage/level_1/eat_1_virus.png",
+			"eat_2": "res://assets/towers/macrophage/level_1/eat_2_virus.png"
+		},
+		"level_2": {
+			"base": "res://assets/towers/macrophage/level_2/no_eat.png",
+			"eat_1": "res://assets/towers/macrophage/level_2/eat_1_virus.png",
+			"eat_2": "res://assets/towers/macrophage/level_2/eat_2_virus.png"
+		},
+		"level_3": {
+			"base": "res://assets/towers/macrophage/level_3/no_eat.png",
+			"eat_1": "res://assets/towers/macrophage/level_3/eat_1_virus.png",
+			"eat_2": "res://assets/towers/macrophage/level_3/eat_2_virus.png"
+		}
+	},
+}

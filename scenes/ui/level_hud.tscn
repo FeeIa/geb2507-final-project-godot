@@ -5,7 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://b4mc0ivx60let" path="res://assets/ui/levels/level_1/map/level1_map_stop_button.png" id="2_aofc0"]
 [ext_resource type="Texture2D" uid="uid://ghmhmjxasbom" path="res://assets/ui/levels/level_1/map/level1_map_exit_button.png" id="3_j7bdr"]
 
-[node name="LevelHud" type="Node2D"]
+[node name="LevelHud" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_aofc0")
 
 [node name="ATP" type="TextureRect" parent="."]

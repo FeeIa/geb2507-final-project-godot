@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4mo6ybwwc588"]
+
+[ext_resource type="Script" uid="uid://c0x1tp225cplv" path="res://scripts/towers/tower_menu.gd" id="1_sg2c4"]
+
+[node name="TowerMenu" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_sg2c4")
+
+[node name="Upgrade" type="Button" parent="."]
+offset_left = 290.0
+offset_top = 527.0
+offset_right = 642.0
+offset_bottom = 634.0
+text = "Upgrade"
+
+[node name="Sell" type="Button" parent="."]
+offset_left = 708.0
+offset_top = 521.0
+offset_right = 1038.0
+offset_bottom = 629.0
+text = "Sell"
+
+[node name="Name" type="Label" parent="."]
+offset_left = 507.0
+offset_top = 319.0
+offset_right = 831.0
+offset_bottom = 460.0
+text = "Insert Tower Name here"
+horizontal_alignment = 1
+vertical_alignment = 1

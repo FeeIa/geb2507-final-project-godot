@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cc73mu77u4ccc"]
+[gd_scene load_steps=5 format=3 uid="uid://cc73mu77u4ccc"]
 
 [ext_resource type="Texture2D" uid="uid://dg5gsbd7riwjf" path="res://assets/ui/levels/level_1/intro/charactor_self_intro_withoutclicktips_greybg.png" id="1_tcn67"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcn67"]
+size = Vector2(375, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxene"]
+size = Vector2(1170, 174)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcgs1"]
+size = Vector2(1170, 120)
 
 [node name="Intro_tscn" type="Node2D"]
 
@@ -10,6 +19,22 @@
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0, 0, 0, 0.49019608)
+
+[node name="Left" type="CollisionShape2D" parent="ClickableArea"]
+position = Vector2(187.5, 540)
+shape = SubResource("RectangleShape2D_tcn67")
+
+[node name="Right" type="CollisionShape2D" parent="ClickableArea"]
+position = Vector2(1732.5, 540)
+shape = SubResource("RectangleShape2D_tcn67")
+
+[node name="Down" type="CollisionShape2D" parent="ClickableArea"]
+position = Vector2(960, 992)
+shape = SubResource("RectangleShape2D_uxene")
+
+[node name="Up" type="CollisionShape2D" parent="ClickableArea"]
+position = Vector2(960, 60)
+shape = SubResource("RectangleShape2D_mcgs1")
 
 [node name="Info" type="TextureRect" parent="."]
 offset_right = 40.0

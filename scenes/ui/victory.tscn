@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://1mawb3kcma41"]
+
+[ext_resource type="Texture2D" uid="uid://ds70y44hxx6vi" path="res://assets/ui/game_finished/victory_defeat_VICTORY_withoutbutton_greybackground.png" id="1_humpp"]
+[ext_resource type="Script" uid="uid://cengsqo4x8jpp" path="res://scripts/ui/victory.gd" id="1_xfc8j"]
+[ext_resource type="Texture2D" uid="uid://bl1xs338v5txe" path="res://assets/ui/game_finished/victory_defeat_NEXTBUTTON.png" id="2_xfc8j"]
+[ext_resource type="Texture2D" uid="uid://b2g3cn28a8jbp" path="res://assets/ui/game_finished/victory_defeat_AGAINBUTTON.png" id="3_sxxsh"]
+
+[node name="Victory" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_xfc8j")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.49019608)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_humpp")
+
+[node name="Next" type="Button" parent="."]
+offset_left = 1194.0
+offset_top = 774.0
+offset_right = 1500.0
+offset_bottom = 902.0
+icon = ExtResource("2_xfc8j")
+flat = true
+
+[node name="Again" type="Button" parent="."]
+offset_left = 441.0
+offset_top = 771.0
+offset_right = 747.0
+offset_bottom = 900.0
+icon = ExtResource("3_sxxsh")
+flat = true

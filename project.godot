@@ -19,6 +19,12 @@ config/icon="res://assets/enemies/default.svg"
 
 GameManager="*res://scenes/managers/game_manager.tscn"
 FadeTransition="*res://scenes/ui/fade_transition.tscn"
+Victory="*res://scenes/ui/victory.tscn"
+TowerMenu="*res://scenes/towers/tower_menu.tscn"
+Defeat="*res://scenes/ui/defeat.tscn"
+LevelHud="*res://scenes/ui/level_hud.tscn"
+GridManager="*res://scenes/managers/grid_manager.tscn"
+TowerDatabase="*res://scenes/managers/tower_database.tscn"
 
 [display]
 

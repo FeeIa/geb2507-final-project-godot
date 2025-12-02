@@ -1,17 +1,32 @@
 extends Node2D
 
 # Config
-@export var grid_width := 10
-@export var grid_height := 5
-@export var cell_size := 130
-@export var center_offset: Vector2 = Vector2(0, 0)
+var grid_width: int
+var grid_height: int
+var cell_size: int
+var center_offset: Vector2
 
 # States
+@onready var viewport_size = get_viewport_rect().size
 var occupied_cells: Array[Vector2i] = [] # where towers exist
 var blocked_cells: Array[Vector2i] = [] # path/obstacles
 var hover_cell := Vector2i(-1, -1)
-@onready var viewport_size = get_viewport_rect().size
-@onready var offset = (viewport_size - Vector2(grid_width * cell_size, grid_height * cell_size)) / 2 + center_offset
+var offset
+
+# Reinitalizes the grid to be reused!
+func init_grid(
+	c_off: Vector2 = Vector2(0, 0),
+	w: int = 10, h: int = 5, 
+	c_sz: int = 130
+):
+	center_offset = c_off
+	grid_width = w
+	grid_height = h
+	cell_size = c_sz
+	offset = (viewport_size - Vector2(grid_width * cell_size, grid_height * cell_size)) / 2 + center_offset
+	
+	occupied_cells.clear()
+	blocked_cells.clear()
 
 func is_cell_inside(cell: Vector2i) -> bool:
 	return cell.x >= 0 and cell.x < grid_width and cell.y >= 0 and cell.y < grid_height
@@ -26,7 +41,7 @@ func world_to_grid(world_pos: Vector2) -> Vector2i:
 
 # Converts grid position to world position (center point of the cell)
 func grid_to_world(cell: Vector2i) -> Vector2:
-	return Vector2(cell.x * cell_size + cell_size / 2, cell.y * cell_size + cell_size / 2) + offset
+	return Vector2(cell.x * cell_size + float(cell_size) / 2, cell.y * cell_size + float(cell_size) / 2) + offset
 
 # Make a cell as blocked
 func turn_cell_to_blocked(cell: Vector2i):
@@ -37,7 +52,7 @@ func turn_cell_to_blocked(cell: Vector2i):
 func occupy_cell(cell: Vector2i):
 	if is_cell_valid(cell):
 		occupied_cells.append(cell)
-		
+
 # Free a cell
 func free_cell(cell: Vector2i):
 	if cell in occupied_cells:
@@ -48,6 +63,7 @@ func free_cell(cell: Vector2i):
 	#occupy_cell(Vector2i(0, 0))
 	#occupy_cell(Vector2i(0, 1))
 	#blocked_cells.append(Vector2i(3,4))
+
 func _draw():
 	for x in range(grid_width):
 		for y in range(grid_height):

@@ -1,14 +1,15 @@
 extends Node2D
 
-@export var grid_manager_path: NodePath
 @export var tower_base_scene: PackedScene = preload("res://scenes/towers/base_tower.tscn")
+@export var tower_container: Node2D
 
-var grid_manager: Node
 var is_placing: bool = false
 var preview_instance: Node2D
 
 func _ready():
-	grid_manager = get_node(grid_manager_path)
+	if !tower_container:
+		print("[ERROR] Missing tower_container in PlacementManager")
+		return
 	
 # Start placing a tower
 func start_placing(tower_type: String):
@@ -23,7 +24,7 @@ func show_preview(tower_type: String):
 		
 	# Instantiate the preview
 	preview_instance = tower_base_scene.instantiate()
-	preview_instance.tower_type = tower_type
+	preview_instance.init(tower_type)
 	preview_instance.modulate = Color(1, 1, 1, 0.5)
 	add_child(preview_instance)
 	
@@ -34,15 +35,15 @@ func cancel_placement():
 	preview_instance = null
 	is_placing = false
 	
-func _process(delta):
+func _process(_delta):
 	if not is_placing or not preview_instance:
 		return
 		
 	var mouse_pos = get_global_mouse_position()
-	var cell = grid_manager.world_to_grid(mouse_pos)
-	preview_instance.position = grid_manager.grid_to_world(cell)
+	var cell = GridManager.world_to_grid(mouse_pos)
+	preview_instance.position = GridManager.grid_to_world(cell)
 	
-	if grid_manager.is_cell_valid(cell):
+	if GridManager.is_cell_valid(cell):
 		preview_instance.modulate = Color(0, 1, 0, 0.5)
 	else:
 		preview_instance.modulate = Color(1, 0, 0 ,0.5)
@@ -52,10 +53,10 @@ func _unhandled_input(event):
 		return
 		
 	if event is InputEventMouseButton and event.pressed:
-		var cell = grid_manager.world_to_grid(get_global_mouse_position())
+		var cell = GridManager.world_to_grid(get_global_mouse_position())
 		
 		if event.button_index == 1:
-			if grid_manager.is_cell_valid(cell):
+			if GridManager.is_cell_valid(cell):
 				place_tower(cell)
 				cancel_placement()
 		elif event.button_index == 2:
@@ -63,13 +64,17 @@ func _unhandled_input(event):
 
 func place_tower(cell: Vector2i):
 	# If not enough money, then do nothing
-	if !GameManager.spend_level_money(preview_instance.cost):
+	if !GameManager.spend_level_money(preview_instance.get_next_level_cost()):
+		print("Not enough money to place!")
 		return
 		
-	grid_manager.occupy_cell(cell)
+	GridManager.occupy_cell(cell)
+	
+	var tower_type = preview_instance.tower_type
 	
 	var tower_instance = tower_base_scene.instantiate()
-	tower_instance.tower_type = preview_instance.tower_type
-	tower_instance.position = grid_manager.grid_to_world(cell)
+	tower_instance.set_script(load("res://scripts/towers/%s.gd" % tower_type))
+	tower_instance.init(tower_type, cell)
+	tower_instance.position = GridManager.grid_to_world(cell)
 	
-	get_parent().add_child(tower_instance)
+	tower_container.add_child(tower_instance)

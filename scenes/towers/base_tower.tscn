@@ -1,28 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1aohj6vm3ulp"]
+[gd_scene load_steps=6 format=3 uid="uid://d1aohj6vm3ulp"]
 
 [ext_resource type="Texture2D" uid="uid://c5fuj1kn1npmv" path="res://assets/enemies/default.svg" id="1_by3tn"]
 [ext_resource type="Script" uid="uid://doct4af3fslko" path="res://scripts/towers/base_tower.gd" id="1_g767u"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ilgo"]
+size = Vector2(135, 135)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_g767u"]
 radius = 75.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vfpy0"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ilgo"]
 radius = 0.01
 
 [node name="Tower" type="StaticBody2D"]
 script = ExtResource("1_g767u")
-tower_type = "phagocyte"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_by3tn")
 
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("RectangleShape2D_1ilgo")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_g767u")
 
-[node name="FireTimer" type="Timer" parent="."]
+[node name="AttackTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="AttackRadius" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_vfpy0")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
+shape = SubResource("CircleShape2D_1ilgo")

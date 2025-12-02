@@ -23,7 +23,7 @@ func _ready():
 		$Place.pressed.connect(_on_place_button)
 		
 func _on_place_button():
-	placement_manager.start_placing("phagocyte")
+	placement_manager.start_placing("macrophage")
 	
 func _update_level_money():
 	$LevelMoney.text = "Money: %d" % GameManager.level_money

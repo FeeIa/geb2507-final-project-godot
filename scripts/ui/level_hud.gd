@@ -1,20 +1,31 @@
-extends Node2D
+extends CanvasLayer
 
-@export var Intro: Node
-@onready var ATPLabel: Label = $ATP/Amount
+var current_intro: Node
+@onready var atp_label: Label = $ATP/Amount
 
-func _ready() -> void:
-	if !Intro:
-		print("[ERROR] No Intro scene found in LevelHUD")
+func init_for(level: int):
+	var ps = load("res://scenes/levels/level_%d/intro.tscn" % level)
+	if not ps:
+		print("[ERROR] Failed to fetch intro packed scene for level %d" % level)
 		return
 	
+	current_intro = ps.instantiate()
+	add_child(current_intro)
+
+	current_intro.get_node("ClickableArea").connect("input_event", _on_input_event)
+
+func open():
+	visible = true
+	
+func close():
+	visible = false
+
+func _ready() -> void:
 	GameManager.connect("level_money_changed", _update_level_money)
-	Intro.get_node("ClickableArea").connect("input_event", _on_input_event)
-	_update_level_money()
 	
 func _update_level_money():
-	ATPLabel.text = str(GameManager.level_money)
+	atp_label.text = str(GameManager.level_money)
 	
-func _on_input_event(viewport, event, shape_idx):
+func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed:
-		Intro.queue_free()
+		current_intro.queue_free()

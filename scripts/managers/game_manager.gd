@@ -21,7 +21,6 @@ var current_playing_level: int = 0
 # Level-specific currency & stats
 var level_money: int = 0
 var lives: int = 0
-var current_level: String = "" 
 var current_wave: int = 0
 
 # Load level scene
@@ -29,7 +28,6 @@ var current_wave: int = 0
 func load_level_scene(level: int):
 	if level <= highest_level_completed + 1:
 		FadeTransition.transition_to_scene("res://scenes/levels/level_%d/map.tscn" % level)
-		current_playing_level = level
 	else:
 		print("Please complete the previous level first!")
 		

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var enemy_type: String
+var enemy_type: String
 var data = {}
 var max_hp: int
 var curr_hp: int
@@ -10,6 +10,7 @@ var lives_damage: int
 var resistances = {}
 var path_points = []
 var curr_path_idx = 0
+var last_hit_by = null # The last tower that hit it
 
 func _ready():
 	if enemy_type:
@@ -33,7 +34,7 @@ func _process(delta: float):
 	var dir = (target - global_position).normalized()
 	global_position += dir * speed * delta
 	
-	if global_position.distance_to(target) < 5:
+	if global_position.distance_to(target) < 2.5:
 		curr_path_idx += 1
 
 # Load the enemy stats
@@ -72,6 +73,8 @@ func update_hp():
 # Upon death
 func die():
 	GameManager.add_level_money(level_money_drop)
+	if last_hit_by:
+		last_hit_by.on_enemy_killed()
 	queue_free()
 	
 # Handle what happens when the enemy reaches player's base

@@ -1,8 +1,7 @@
 extends Node
 
-@export var level_name: String
-@export var grid_manager: Node
-@export var enemy_container: Node
+@export var level: int
+@export var enemy_container: Node2D
 
 var waves = []
 var path_cells = []
@@ -15,17 +14,15 @@ var enemies_count: int = 0
 var game_over = false
 
 func _ready():
-	if !level_name:
-		print("[ERROR] Missing level_name in LevelManager")
-		return
-	if !grid_manager:
-		print("[ERROR] Missing grid_manager in LevelManager")
+	if !level:
+		print("[ERROR] Missing level in LevelManager")
 		return
 	if !enemy_container:
 		print("[ERROR] Missing enemy_container in LevelManager")
 		return
 		
 	GameManager.game_over.connect(_on_game_over)
+	GameManager.level_completed.connect(_on_level_completed)
 	load_level()
 	enemy_container.child_exiting_tree.connect(func(child: Node):
 		if game_over: return
@@ -44,28 +41,33 @@ func _ready():
 # Load specific level based on the JSON data
 # Params: level_name
 func load_level():
-	var file = FileAccess.open("res://data/levels/%s.json" % level_name, FileAccess.READ)
+	var file = FileAccess.open("res://data/levels/level_%s.json" % level, FileAccess.READ)
 	if file:
 		var data = JSON.parse_string(file.get_as_text())
 		if not data:
-			print("[ERROR] Empty JSON data for " + str(level_name))
+			print("[ERROR] Empty JSON data for level " + str(level))
 			return
+			
+		LevelHud.init_for(level)
+		LevelHud.open()
 
 		GameManager.level_money = data.get("level_money", 50)
 		GameManager.lives = data.get("lives", 20)
-		waves = data["waves"]
-		path_cells = data["path"]
+		waves = data.get("waves")
+		path_cells = data.get("path")
 		
+		var c_off = data.get("grid_center_offset")
+		GridManager.init_grid(Vector2(c_off[0], c_off[1]))
 		for cell in path_cells:
-			grid_manager.turn_cell_to_blocked(Vector2i(cell[0], cell[1]))
+			GridManager.turn_cell_to_blocked(Vector2i(cell[0], cell[1]))
 		
 		file.close()
 	else:
-		print("[ERROR] No JSON file for " + str(level_name) + " was found!")
+		print("[ERROR] No JSON file for level " + str(level) + " was found!")
 		return
 		
+	GameManager.current_playing_level = level
 	GameManager.current_wave = current_wave_idx
-	GameManager.current_level = level_name
 	GameManager.level_money_changed.emit()
 	GameManager.lives_changed.emit()
 
@@ -101,17 +103,24 @@ func spawn_wave(wave_data: Dictionary):
 	
 # Spawn the enemy
 func spawn_enemy(enemy_id: String):
+	if not is_instance_valid(enemy_container): return
+	
 	var e = preload("res://scenes/enemies/base_enemy.tscn").instantiate()
 	e.enemy_type = enemy_id
 	
 	for cell in path_cells:
-		var world_pos: Vector2 = grid_manager.grid_to_world(Vector2i(cell[0], cell[1]))
+		var world_pos: Vector2 = GridManager.grid_to_world(Vector2i(cell[0], cell[1]))
 		e.path_points.append(world_pos)
 	
 	enemy_container.add_child(e)
 	enemies_count += 1
 
-# On Game Over
+# On game over
 func _on_game_over():
 	game_over = true
 	enemy_container.queue_free()
+	Defeat.open()
+	
+# On level completed
+func _on_level_completed():
+	Victory.open()

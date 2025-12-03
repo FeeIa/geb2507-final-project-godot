@@ -1,25 +1,26 @@
 {
+	"explanation": "res://assets/towers/macrophage/explanation.png",
 	"props": {
 		"level_1": {
 			"damage": 0,
 			"cost": 5,
 			"cell_range": 1,
 			"attack_radius": 300,
-			"attack_rate": 2
+			"attack_cooldown": 2
 		},
 		"level_2": {
 			"damage": 0,
 			"cost": 10,
 			"cell_range": 2,
 			"attack_radius": 400,
-			"attack_rate": 1.5,
+			"attack_cooldown": 1.5,
 		},
 		"level_3": {
 			"damage": 0,
 			"cost": 15,
 			"cell_range": 2,
 			"attack_radius": 500,
-			"attack_rate": 1,
+			"attack_cooldown": 1,
 		}
 	},
 	"textures": {

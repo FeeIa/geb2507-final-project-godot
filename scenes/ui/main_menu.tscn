@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://wu5i6gor5t34"]
+[gd_scene load_steps=7 format=3 uid="uid://wu5i6gor5t34"]
 
 [ext_resource type="Script" uid="uid://f03hpird514" path="res://scripts/ui/main_menu.gd" id="1_sl1te"]
 [ext_resource type="Texture2D" uid="uid://dae8pyuqsmtna" path="res://assets/ui/main_menu/INTERFACE_START_withoutbuttons_title.png" id="2_btxxm"]
 [ext_resource type="Texture2D" uid="uid://cfsqoq6choibn" path="res://assets/ui/main_menu/INTERFACE_START_playbutton.png" id="3_btxxm"]
 [ext_resource type="Texture2D" uid="uid://dd1dqdekt515j" path="res://assets/ui/main_menu/INTERFACE_START_optionsbutton.png" id="4_wb0q5"]
 [ext_resource type="Texture2D" uid="uid://bnajym26ft54d" path="res://assets/ui/main_menu/INTERFACE_START_continuebutton.png" id="5_q85j6"]
-[ext_resource type="Texture2D" uid="uid://b13hy4vf4e32m" path="res://assets/ui/main_menu/INTERFACE_START_levelsbutton.png" id="6_8g5eo"]
 [ext_resource type="Texture2D" uid="uid://cvboapgh3rsjl" path="res://assets/ui/main_menu/INTERFACE_START_title.png" id="7_wb0q5"]
 
 [node name="MainMenu" type="Control"]
@@ -19,10 +18,10 @@ texture = ExtResource("2_btxxm")
 
 [node name="Play" type="Button" parent="."]
 layout_mode = 0
-offset_left = 95.0
-offset_top = 466.0
-offset_right = 276.0
-offset_bottom = 579.0
+offset_left = 102.0
+offset_top = 591.0
+offset_right = 283.0
+offset_bottom = 704.0
 icon = ExtResource("3_btxxm")
 flat = true
 
@@ -37,20 +36,11 @@ flat = true
 
 [node name="Continue" type="Button" parent="."]
 layout_mode = 0
-offset_left = 94.0
-offset_top = 602.0
-offset_right = 407.0
-offset_bottom = 709.0
+offset_left = 100.0
+offset_top = 733.0
+offset_right = 413.0
+offset_bottom = 840.0
 icon = ExtResource("5_q85j6")
-flat = true
-
-[node name="Levels" type="Button" parent="."]
-layout_mode = 0
-offset_left = 97.0
-offset_top = 732.0
-offset_right = 353.0
-offset_bottom = 849.0
-icon = ExtResource("6_8g5eo")
 flat = true
 
 [node name="TextureRect" type="TextureRect" parent="."]

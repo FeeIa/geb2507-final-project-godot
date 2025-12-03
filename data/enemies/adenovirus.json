@@ -1,0 +1,9 @@
+{
+	"hp": 20,
+	"speed": 130,
+	"level_money_drop": 8,
+	"lives_damage": 2,
+	"resistances": {"macrophage": 1},
+	"texture": "res://assets/enemies/adenovirus/sprite.png",
+	"explanation": "res://assets/enemies/adenovirus/explanation.png"
+}

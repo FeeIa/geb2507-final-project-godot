@@ -12,6 +12,8 @@ var path_points = []
 var curr_path_idx = 0
 var last_hit_by = null # The last tower that hit it
 
+@onready var sprite_area = $Sprite2D/Area2D
+
 func _ready():
 	if enemy_type:
 		load_stats()
@@ -21,6 +23,13 @@ func _ready():
 	
 	update_hp()
 	add_to_group("enemies")
+	
+	sprite_area.connect("mouse_entered", func():
+		$HP.visible = true
+	)
+	sprite_area.connect("mouse_exited", func():
+		$HP.visible = false
+	)
 		
 func _process(delta: float):
 	if curr_path_idx >= path_points.size():
@@ -42,13 +51,8 @@ func load_stats():
 	if not enemy_type:
 		print("[ERROR] Enemy type is not yet set!")
 		return
-		
-	var file = FileAccess.open("res://data/enemies/%s.json" % enemy_type, FileAccess.READ)
-	if not file:
-		print("[ERROR] No JSON file found for enemy " + str(enemy_type))
-		return
 	
-	data = JSON.parse_string(file.get_as_text())
+	data = Database.get_enemy_data(enemy_type)
 	max_hp = data.get("hp", 100)
 	curr_hp = max_hp
 	speed = data.get("speed", 100)
@@ -57,7 +61,10 @@ func load_stats():
 	resistances = data.get("resistances", {})
 	
 	$Sprite2D.texture = load(data.get("texture", "res://assets/enemies/default.svg"))
-
+	var target_size = Vector2(162.5, 162.5)
+	var scl = target_size / $Sprite2D.texture.get_size()
+	$Sprite2D.scale = scl
+	
 # Call this for enemies to take damage
 func take_damage(amount: int, tower_type: String):
 	var reduction = 1 - resistances.get(tower_type, 0)
@@ -68,7 +75,10 @@ func take_damage(amount: int, tower_type: String):
 		
 # Update health bar
 func update_hp():
-	$HPBar.value = float(curr_hp) / max_hp * 100
+	$HP.text = str(curr_hp) + " / " + str(max_hp)
+	
+func has_resistance(tower_type) -> bool:
+	return resistances.has(tower_type)
 		
 # Upon death
 func die():

@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://d1aohj6vm3ulp"]
 
-[ext_resource type="Texture2D" uid="uid://c5fuj1kn1npmv" path="res://assets/enemies/default.svg" id="1_by3tn"]
+[ext_resource type="Texture2D" uid="uid://c5fuj1kn1npmv" path="res://assets/enemies/default/default.svg" id="1_by3tn"]
 [ext_resource type="Script" uid="uid://doct4af3fslko" path="res://scripts/towers/base_tower.gd" id="1_g767u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ilgo"]
-size = Vector2(135, 135)
+size = Vector2(300, 300)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g767u"]
 radius = 75.0

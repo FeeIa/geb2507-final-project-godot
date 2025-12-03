@@ -1,0 +1,9 @@
+{
+	"hp": 10000,
+	"speed": 260,
+	"level_money_drop": 1000,
+	"lives_damage": 10,
+	"resistances": {"macropage": 0.9, "nkcell": 0.8, "neutrophil": 0.7},
+	"texture": "res://assets/enemies/default/default.svg",
+	"explanation": "res://assets/enemies/default/default.png"
+}

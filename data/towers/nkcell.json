@@ -1,0 +1,18 @@
+{
+	"explanation": "res://assets/towers/nkcell/explanation.png",
+	"props": {
+		"level_1": {
+			"damage": 1,
+			"cost": 10,
+			"cell_range": 100,
+			"attack_radius": 1000,
+			"attack_cooldown": 2
+		},
+	},
+	
+	"textures": {
+		"level_1": {
+			"base": "res://assets/towers/nkcell/level_1/nkcell.png",
+		},
+	},
+}

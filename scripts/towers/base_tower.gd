@@ -5,87 +5,124 @@ var data: Dictionary = {}
 var sprite: Sprite2D
 
 var props: Dictionary
-var damage: int
-var attack_radius: float
-var attack_rate: float
 var cell_range: int
 var textures: Dictionary
+var base_damage: int
+var curr_damage: int
+var base_attack_radius: float
+var curr_attack_radius: float
+var base_attack_cooldown: float
+var curr_attack_cooldown: float
 
 var current_target: Node = null
 var target_queue: Array[Node] = []
 var kill_count: int = 0
 var level: int = 0 # Defaults to 0 --> representing not placed yet!
 var cell: Vector2i
+var curr_texture_type = "base"
+
+func _process(_delta):
+	validate_curr_target()
 
 func init(type: String, cell_ref: Vector2i = Vector2i(-1, -1)):
 	tower_type = type
 	level = 1 # Any tower starts from level 1
-	data = TowerDatabase.get_tower_data(type)
+	data = Database.get_tower_data(type)
 	load_appearance()
 	
-	# In the case of previews
+	# In the case of previews, do NOTHING FURTHER
 	if cell_ref.x == -1 and cell_ref.y == -1:
 		level = 0
 		return
 		
-	load_stats()
-	
 	cell = cell_ref
+	global_position = GridManager.grid_to_world(cell)
 	
+	load_stats()
+	BuffManager.buffs_changed.connect(apply_buffs)
+	
+	# Anything that enters will be pushed to the queue
 	$AttackRadius.connect("body_entered", func(body: Node):
-		if !body.is_in_group("enemies"): return
+		if not body.is_in_group("enemies"): return
 		
-		target_queue.push_back(body)
-		if not current_target:
-			while !is_instance_valid(target_queue.front()):
-				target_queue.pop_front()
-				
-			current_target = target_queue.front()
-			target_queue.pop_front()
+		target_queue.push_front(body)
+		if not current_target or not is_instance_valid(current_target):
+			pop_next_target()
 	)
 	
+	# Anything that exits will be attempted to be erased from the queue
 	$AttackRadius.connect("body_exited", func(body: Node):
+		target_queue.erase(body)
 		if current_target == body:
 			current_target = null
-			
-		if !target_queue.is_empty():
-			if is_instance_valid(target_queue.front()):
-				current_target = target_queue.front()
-			target_queue.pop_front()
+			pop_next_target()
 	)
 	
 	$AttackTimer.connect("timeout", _on_AttackTimer_timeout)
 	
-	$Sprite2D/Area2D.connect("input_event", func(viewport, event, shape_idx):
+	await get_tree().create_timer(0.1).timeout
+	$Sprite2D/Area2D.connect("input_event", func(_viewport, event, _shape_idx):
 		if event is InputEventMouseButton and event.pressed:
 			TowerMenu.open_for(self)
 	)
 
+func validate_curr_target():
+	if not current_target or not is_instance_valid(current_target) or not is_body_in_cell_range(current_target):
+		current_target = null
+		pop_next_target()
+
+func is_body_in_cell_range(body: Node) -> bool:
+	var target_cell = GridManager.world_to_grid(body.global_position)
+	var dx = abs(target_cell.x - cell.x)
+	var dy = abs(target_cell.y - cell.y)
+	var mx = max(dx, dy)
+	var mn = min(dx, dy)
+	var dist = (mx - mn) + mn
+	# Shortest path algo
+	
+	return dist <= cell_range
+
+func pop_next_target():
+	for e in target_queue:
+		if not is_instance_valid(e):
+			target_queue.erase(e)
+			continue
+		if not is_body_in_cell_range(e):
+			continue
+		current_target = e
+		return
+		
+	current_target = null
 # Load the tower stats, which is called upon initialization and upgrades
 func load_stats():
 	props = data.get("props")["level_%d" % level]
-	damage = props.get("damage")
-	attack_radius = props.get("attack_radius")
-	attack_rate = props.get("attack_rate")
+	base_damage = props.get("damage")
+	base_attack_radius = props.get("attack_radius")
+	base_attack_cooldown = props.get("attack_cooldown")
 	cell_range = props.get("cell_range")
 	
-	$AttackTimer.wait_time = attack_rate
-	
 	load_appearance()
+	apply_buffs()
 
 func load_appearance():
 	sprite = $Sprite2D
 	textures = data.get("textures")["level_%d" % level]
-	
-	$AttackRadius/CollisionShape2D.shape.radius = attack_radius
-	sprite.texture = load(textures.get("base"))
+	sprite.texture = load(textures.get(curr_texture_type))
 	
 	var target_size = Vector2(162.5, 162.5)
 	var scl = target_size / sprite.texture.get_size()
 	sprite.scale = scl
+	
+func apply_buffs():
+	curr_damage = int(base_damage * BuffManager.get_buff_mutli("damage"))
+	curr_attack_cooldown = base_attack_cooldown * BuffManager.get_buff_mutli("attack_cooldown")
+	curr_attack_radius = base_attack_radius * BuffManager.get_buff_mutli("attack_radius")	
+	
+	$AttackTimer.wait_time = curr_attack_cooldown
+	$AttackRadius/CollisionShape2D.shape.radius = curr_attack_radius
 
 func can_upgrade() -> bool:
-	return data.get("props").has("level_%d" % level)
+	return data.get("props").has("level_%d" % (level + 1))
 	
 func get_next_level_cost() -> int:
 	return data.get("props")["level_%d" % (level + 1)]["cost"]
@@ -113,18 +150,25 @@ func on_enemy_killed():
 
 func _on_AttackTimer_timeout():
 	if current_target:
+		is_attacking = true
 		attack()
+	else:
+		is_attacking = false
+	change_state_visual()
 		
+# IMPORTANT!!!
+var is_attacking = false
 # Override this in inherited scripts for custom attack logic
 func attack():
 	shoot(current_target)
+# Override this in inherited scripts for custom attack logic
+func change_state_visual():
+	pass
 	
 # Default attack pattern (shoot)
 func shoot(enemy):
-	var proj = preload("res://scenes/projectiles/base_projectile.tscn").instantiate()
-	proj.damage = damage
-	proj.source_tower = self
+	var proj = load("res://scenes/projectiles/base_projectile.tscn").instantiate()
+	proj.init_for(self, enemy)
 	proj.global_position = global_position
-	proj.target_enemy = enemy
 	
 	get_parent().add_child(proj)

@@ -1,0 +1,93 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3c6ygqd5wnql"]
+
+[ext_resource type="Script" uid="uid://cksg2cbu370pu" path="res://scripts/consumables/consumable_shop.gd" id="1_nh6is"]
+[ext_resource type="Texture2D" uid="uid://cyvbrhsco3sit" path="res://assets/ui/consumable_explanations/BUFF_EXPLANATION_INTERFACE_energybar_withoutexitbutton_greybackground.png" id="2_oghbg"]
+[ext_resource type="Texture2D" uid="uid://cgr2s78atplw3" path="res://assets/ui/consumable_explanations/BUFF_EXPLANATION_INTERFACE_fevermedicine_withoutexitbutton_greybackground.png" id="3_nh6is"]
+[ext_resource type="Texture2D" uid="uid://bs4xy0bh1vbd7" path="res://assets/ui/consumable_explanations/BUFF_EXPLANATION_INTERFACE_button.png" id="3_on5st"]
+[ext_resource type="Texture2D" uid="uid://dkfwkhcfydtil" path="res://assets/ui/consumable_explanations/BUFF_EXPLANATION_INTERFACE_goodsleep_withoutexitbutton_greybackground.png" id="4_ho08e"]
+[ext_resource type="Texture2D" uid="uid://4tv42prkhbi1" path="res://assets/ui/consumable_explanations/BUFF_EXPLANATION_INTERFACE_vitamin_withoutexitbutton_greybackground.png" id="5_7sa7k"]
+[ext_resource type="Texture2D" uid="uid://bu4irgh1wj8ri" path="res://assets/ui/consumable_explanations/BUFF_EXPLANATION_INTERFACE_exitbutton.png" id="6_t8km7"]
+
+[node name="ConsumableShop" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_nh6is")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.49019608)
+
+[node name="Descriptions" type="CanvasGroup" parent="."]
+
+[node name="EnergyBar" type="TextureRect" parent="Descriptions"]
+visible = false
+offset_top = -33.0
+offset_right = 1920.0
+offset_bottom = 1047.0
+texture = ExtResource("2_oghbg")
+
+[node name="Button" type="Button" parent="Descriptions/EnergyBar"]
+layout_mode = 0
+offset_left = 1101.0
+offset_top = 568.0
+offset_right = 1333.0
+offset_bottom = 679.0
+icon = ExtResource("3_on5st")
+flat = true
+
+[node name="FeverMedicine" type="TextureRect" parent="Descriptions"]
+visible = false
+offset_top = -33.0
+offset_right = 1920.0
+offset_bottom = 1047.0
+texture = ExtResource("3_nh6is")
+
+[node name="Button" type="Button" parent="Descriptions/FeverMedicine"]
+layout_mode = 0
+offset_left = 1101.0
+offset_top = 568.0
+offset_right = 1333.0
+offset_bottom = 679.0
+icon = ExtResource("3_on5st")
+flat = true
+
+[node name="GoodSleep" type="TextureRect" parent="Descriptions"]
+visible = false
+offset_top = -33.0
+offset_right = 1920.0
+offset_bottom = 1047.0
+texture = ExtResource("4_ho08e")
+
+[node name="Button" type="Button" parent="Descriptions/GoodSleep"]
+layout_mode = 0
+offset_left = 1101.0
+offset_top = 568.0
+offset_right = 1333.0
+offset_bottom = 679.0
+icon = ExtResource("3_on5st")
+flat = true
+
+[node name="VitaminC" type="TextureRect" parent="Descriptions"]
+visible = false
+offset_top = -33.0
+offset_right = 1920.0
+offset_bottom = 1047.0
+texture = ExtResource("5_7sa7k")
+
+[node name="Button" type="Button" parent="Descriptions/VitaminC"]
+layout_mode = 0
+offset_left = 1101.0
+offset_top = 568.0
+offset_right = 1333.0
+offset_bottom = 679.0
+icon = ExtResource("3_on5st")
+flat = true
+
+[node name="Close" type="Button" parent="."]
+visible = false
+offset_left = 1474.0
+offset_top = 51.0
+offset_right = 1592.0
+offset_bottom = 170.0
+icon = ExtResource("6_t8km7")
+flat = true

@@ -1,31 +1,51 @@
 extends CanvasLayer
 
-var current_intro: Node
 @onready var atp_label: Label = $ATP/Amount
+signal use_consumable(id: String, c: Button)
 
-func init_for(level: int):
-	var ps = load("res://scenes/levels/level_%d/intro.tscn" % level)
-	if not ps:
-		print("[ERROR] Failed to fetch intro packed scene for level %d" % level)
-		return
+func _ready() -> void:
+	GameManager.connect("level_money_changed", _update_level_money)
+	use_consumable.connect(func(slot):
+		var id = slot.name
+		if ConsumableInventory.use_consumable(id):
+			var c: Button = slot.get_node("Clickable")
+			ConsumableManager.activate_consumable(id)
+			update_slot(slot)
+			c.disabled = true
+	)
+	for slot: TextureRect in $ConsumableSlots.get_children():
+		var c: Button = slot.get_node("Clickable")
+		c.pressed.connect(func():
+			use_consumable.emit(slot)
+		)
+		update_slot(slot)
+		
+	$ATP.connect("mouse_entered", func():
+		Tip.open_for("atp")
+	)
+	$ATP.connect("mouse_exited", func():
+		Tip.close()
+	)
+
+func update_slot(slot):
+	var id = slot.name
+	var c: Button = slot.get_node("Clickable")
+	var amt: Label = slot.get_node("Amount")
+	amt.text = "x" + str(ConsumableInventory.get_consumable_cnt(id))
+	c.disabled = false
 	
-	current_intro = ps.instantiate()
-	add_child(current_intro)
+	if not ConsumableInventory.has_consumable(id):
+		c.disabled = true
 
-	current_intro.get_node("ClickableArea").connect("input_event", _on_input_event)
+func init_hud():
+	for slot: TextureRect in $ConsumableSlots.get_children():
+		update_slot(slot)
 
 func open():
 	visible = true
 	
 func close():
 	visible = false
-
-func _ready() -> void:
-	GameManager.connect("level_money_changed", _update_level_money)
 	
 func _update_level_money():
 	atp_label.text = str(GameManager.level_money)
-	
-func _on_input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton and event.pressed:
-		current_intro.queue_free()

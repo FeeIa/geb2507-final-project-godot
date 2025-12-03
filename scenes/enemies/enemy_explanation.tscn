@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7xb7pdx5hr3h"]
+
+[ext_resource type="Script" uid="uid://btopqjlrcbm13" path="res://scripts/enemies/enemy_explanation.gd" id="1_exujf"]
+[ext_resource type="Texture2D" uid="uid://bvhqr4pbowh4c" path="res://assets/enemies/adenovirus/explanation.png" id="1_ffi5o"]
+[ext_resource type="Texture2D" uid="uid://ioyl8623rnmn" path="res://assets/ui/misc/close_icon.png" id="2_exujf"]
+
+[node name="EnemyExplanation" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_exujf")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.49019608)
+
+[node name="Explanation" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_ffi5o")
+
+[node name="Close" type="Button" parent="."]
+offset_left = 1473.0
+offset_top = 84.0
+offset_right = 1591.0
+offset_bottom = 203.0
+icon = ExtResource("2_exujf")
+flat = true

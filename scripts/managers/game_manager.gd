@@ -13,10 +13,11 @@ signal game_over
 const DEFAULT_LEVEL_MONEY = 10
 const DEFAULT_LIVES = 10
 
-# Global currency
-var global_money: int = 0
+# Global states
+var global_money: int = 100
 var highest_level_completed: int = 0
 var current_playing_level: int = 0
+var intro_viewed: bool = false
 
 # Level-specific currency & stats
 var level_money: int = 0
@@ -27,7 +28,7 @@ var current_wave: int = 0
 # Params: level_name
 func load_level_scene(level: int):
 	if level <= highest_level_completed + 1:
-		FadeTransition.transition_to_scene("res://scenes/levels/level_%d/map.tscn" % level)
+		FadeTransition.transition_to_scene("res://scenes/levels/level_%d/prep.tscn" % level)
 	else:
 		print("Please complete the previous level first!")
 		
@@ -53,7 +54,7 @@ func add_global_money(amount: int):
 # Spend global mmoney
 func spend_global_money(amount: int) -> bool:
 	if global_money >= amount:
-		add_level_money(-amount)
+		add_global_money(-amount)
 		return true
 	return false
 	

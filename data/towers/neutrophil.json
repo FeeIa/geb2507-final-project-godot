@@ -1,0 +1,41 @@
+{
+	"explanation": "res://assets/towers/neutrophil/explanation.png",
+	"props": {
+		"level_1": {
+			"damage": 2,
+			"cost": 10,
+			"cell_range": 3,
+			"attack_radius": 1000,
+			"attack_cooldown": 2
+		},
+		"level_2": {
+			"damage": 4,
+			"cost": 20,
+			"cell_range": 3,
+			"attack_radius": 1000,
+			"attack_cooldown": 1.5,
+		},
+		"level_3": {
+			"damage": 6,
+			"cost": 30,
+			"cell_range": 3,
+			"attack_radius": 1000,
+			"attack_cooldown": 1,
+		}
+	},
+	
+	"textures": {
+		"level_1": {
+			"base": "res://assets/towers/neutrophil/level_1/normal.png",
+			"attack": "res://assets/towers/neutrophil/level_1/attack.png"
+		},
+		"level_2": {
+			"base": "res://assets/towers/neutrophil/level_2/normal.png",
+			"attack": "res://assets/towers/neutrophil/level_2/attack.png"
+		},
+		"level_3": {
+			"base": "res://assets/towers/neutrophil/level_3/normal.png",
+			"attack": "res://assets/towers/neutrophil/level_3/attack.png"
+		}
+	},
+}

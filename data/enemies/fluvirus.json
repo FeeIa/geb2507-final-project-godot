@@ -1,0 +1,9 @@
+{
+	"hp": 8,
+	"speed": 130,
+	"level_money_drop": 3,
+	"lives_damage": 1,
+	"resistances": {"macrophage": 0.0, "bcell": 0.0, "neutrophil": 0.7},
+	"texture": "res://assets/enemies/fluvirus/sprite.png",
+	"explanation": "res://assets/enemies/fluvirus/explanation.png"
+}

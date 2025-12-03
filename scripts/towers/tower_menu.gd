@@ -4,26 +4,33 @@ var selected_tower = null
 
 func _ready() -> void:
 	$Upgrade.pressed.connect(func():
+		if not selected_tower: return
 		selected_tower.upgrade()
-		close()
+		update_stats()
 	)
 	$Sell.pressed.connect(func():
+		if not selected_tower: return
 		var val = selected_tower.sell_value()
 		GameManager.add_level_money(val)
-		
-		# REMOVE TOWER FROM GridManager occupancy!!!!
 		GridManager.free_cell(selected_tower.cell)
-		
 		selected_tower.queue_free()
 		close()
 	)
+	$Close.pressed.connect(close)
+	BuffManager.buffs_changed.connect(update_stats)
 
 func open_for(tower):
 	selected_tower = tower
-	print(selected_tower)
+	$Explanation.texture = load(Database.get_tower_data(selected_tower.tower_type).get("explanation"))
 	visible = true
-	$Name.text  = tower.tower_type
-	$Upgrade.disabled = not tower.can_upgrade()
+	update_stats()
+
+func update_stats():
+	if not selected_tower or not is_instance_valid(selected_tower):
+		return
+		
+	$Stats.text = "Damage: " + str(selected_tower.curr_damage) + " Range: " + str(selected_tower.curr_attack_radius) + " Cooldown: " + str(selected_tower.curr_attack_cooldown)
+	$Upgrade.disabled = not selected_tower.can_upgrade()
 
 func close():
 	selected_tower = null

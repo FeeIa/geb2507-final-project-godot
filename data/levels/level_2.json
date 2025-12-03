@@ -1,6 +1,6 @@
 {
 	"level_money": 100,
-	"lives": 25,
+	"lives": 10,
 	"waves": [
 		{"type": "test", "count": 50, "interval": 0.1},
 		{"type": "influenza", "count": 100, "interval": 0.1},

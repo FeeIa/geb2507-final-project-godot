@@ -1,10 +1,30 @@
 {
 	"level_money": 100,
-	"lives": 20,
+	"lives": 10,
 	"waves": [
-		{"type": "test", "count": 5, "interval": 1.0},
-		{"type": "influenza", "count": 10, "interval": 0.5},
-		{"type": "cancer", "count": 1, "interval": 1.5},
+		[
+			{"type": "fluvirus", "count": 5, "interval": 1.0}
+		],
+		[
+			{"type": "fluvirus", "count": 5, "interval": 1.0},
+		],
+		[
+			{"type": "fluvirus", "count": 7, "interval": 1.0},
+		],
+		[
+			{"type": "fluvirus", "count": 6, "interval": 2.0},
+			{"type": "adenovirus", "count": 2, "interval": 2.0},
+		],
+		[
+			{"type": "fluvirus", "count": 5, "interval": 2.0},
+			{"type": "adenovirus", "count": 2, "interval": 2.0},
+			{"type": "strepto", "count": 1, "interval": 2.0}
+		],
+		[
+			{"type": "fluvirus", "count": 5, "interval": 2.0},
+			{"type": "adenovirus", "count": 2, "interval": 2.0},
+			{"type": "strepto", "count": 3, "interval": 2.0}
+		]
 	],
 	"grid_center_offset": [6.5, 82.5],
 	"path": [

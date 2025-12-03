@@ -13,18 +13,24 @@ config_version=5
 config/name="GEB2507 Final Project"
 run/main_scene="uid://wu5i6gor5t34"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://assets/enemies/default.svg"
+config/icon="res://assets/enemies/default/default.svg"
 
 [autoload]
 
+ConsumableInventory="*res://scenes/consumables/consumable_inventory.tscn"
+ConsumableManager="*res://scenes/managers/consumable_manager.tscn"
 GameManager="*res://scenes/managers/game_manager.tscn"
-FadeTransition="*res://scenes/ui/fade_transition.tscn"
-Victory="*res://scenes/ui/victory.tscn"
-TowerMenu="*res://scenes/towers/tower_menu.tscn"
-Defeat="*res://scenes/ui/defeat.tscn"
-LevelHud="*res://scenes/ui/level_hud.tscn"
+BuffManager="*res://scenes/managers/buff_manager.tscn"
+Database="*res://scenes/managers/database.tscn"
 GridManager="*res://scenes/managers/grid_manager.tscn"
-TowerDatabase="*res://scenes/managers/tower_database.tscn"
+ConsumableShop="*res://scenes/consumables/consumable_shop.tscn"
+LevelHud="*res://scenes/ui/level_hud.tscn"
+Tip="*res://scenes/ui/tip.tscn"
+TowerMenu="*res://scenes/towers/tower_menu.tscn"
+EnemyExplanation="*res://scenes/enemies/enemy_explanation.tscn"
+Victory="*res://scenes/ui/victory.tscn"
+Defeat="*res://scenes/ui/defeat.tscn"
+FadeTransition="*res://scenes/ui/fade_transition.tscn"
 
 [display]
 

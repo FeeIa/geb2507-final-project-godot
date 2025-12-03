@@ -21,6 +21,12 @@ func _ready():
 	placement_manager = get_node(placement_manager_path)
 	if placement_manager:
 		$Place.pressed.connect(_on_place_button)
+		$Place2.pressed.connect(func():
+			placement_manager.start_placing("nkcell")
+		)
+		$Place3.pressed.connect(func():
+			placement_manager.start_placing("neutrophil")
+		)
 		
 func _on_place_button():
 	placement_manager.start_placing("macrophage")

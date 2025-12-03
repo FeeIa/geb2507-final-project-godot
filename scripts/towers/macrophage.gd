@@ -1,49 +1,50 @@
 extends "res://scripts/towers/base_tower.gd"
 
-var is_attacking: bool = false
-var buff_active: bool = false
-var buff_timer: Timer
-var base_damage: int
+var is_digesting = false
+var digest_cooldown: int = -1
 
-func init(type: String, cell_ref: Vector2i = Vector2i(-1, -1)):
-	super(type, cell_ref)
-	base_damage = damage
+func attack():
+	if is_digesting: return
 	
-	buff_timer = Timer.new()
-	buff_timer.wait_time = 5.0
-	buff_timer.one_shot = true
-	buff_timer.timeout.connect(_on_buff_timeout)
+	if current_target.has_resistance(tower_type):
+		current_target = null
+		pop_next_target()
+		target_queue.erase(current_target)
+		return
 	
-	add_child(buff_timer)
+	var tween = get_tree().create_tween()
+	tween.tween_property(current_target, "global_position", global_position, 0.5)
+	tween.finished.connect(func():
+		if not is_instance_valid(current_target):
+			return
+			
+		current_target.last_hit_by = self
+		current_target.die()
+		upd_sprite()
+		if kill_count >= 2:
+			start_digest_cooldown()
+	)
 	
-func on_enemy_killed():
-	super()
+func start_digest_cooldown():
+	if digest_cooldown <= -1:
+		digest_cooldown = props.get("digest_cooldown")
+	
+	is_digesting = true
+	get_tree().create_timer(digest_cooldown).timeout.connect(func():
+		is_digesting = false
+		kill_count = 0
+		upd_sprite()
+	)
+	
+func upd_sprite():
 	if kill_count == 1:
-		activate_buff(1)
+		curr_texture_type = "eat_1"
+		sprite.offset = Vector2(45, -47)
 	elif kill_count == 2:
-		activate_buff(2)
-	
-func activate_buff(level: int):
-	if buff_active:
-		buff_timer.stop()
-	
-	if level == 1 or level == 2:
-		buff_active = true
+		curr_texture_type = "eat_2"
+		sprite.offset = Vector2(33, -50)
+	else:
+		curr_texture_type = "base"
+		sprite.offset = Vector2(0, 0)
 		
-		if level == 1:
-			damage = base_damage + 10
-			sprite.offset = Vector2(45, -47)
-		elif level == 2:
-			damage = base_damage + 20
-			sprite.offset = Vector2(33, -50)
-	
-	if buff_active:
-		sprite.texture = load(textures["eat_%d" % level])
-		buff_timer.start()
-	
-func _on_buff_timeout():
-	buff_active = false
-	kill_count = 0
-	damage = base_damage
-	sprite.texture = load(textures["base"])
-	sprite.offset = Vector2(0, 0)
+	load_appearance()

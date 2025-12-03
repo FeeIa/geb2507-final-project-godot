@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://xmadli0fa8cc"]
 
-[ext_resource type="Texture2D" uid="uid://dxkb6al5q2uuu" path="res://assets/ui/game_finished/victory_defeat_DEFEAT_withoutbutton_greybackground.png" id="1_ex4vg"]
+[ext_resource type="Texture2D" uid="uid://dxkb6al5q2uuu" path="res://assets/ui/game_finish/victory_defeat_DEFEAT_withoutbutton_greybackground.png" id="1_ex4vg"]
 [ext_resource type="Script" uid="uid://uk4vthw8gg2c" path="res://scripts/ui/defeat.gd" id="1_ieybc"]
-[ext_resource type="Texture2D" uid="uid://j4xrkfguxjk8" path="res://assets/ui/game_finished/victory_defeat_BACKBUTTON.png" id="2_ieybc"]
-[ext_resource type="Texture2D" uid="uid://b2g3cn28a8jbp" path="res://assets/ui/game_finished/victory_defeat_AGAINBUTTON.png" id="3_vqpnd"]
+[ext_resource type="Texture2D" uid="uid://j4xrkfguxjk8" path="res://assets/ui/game_finish/victory_defeat_BACKBUTTON.png" id="2_ieybc"]
+[ext_resource type="Texture2D" uid="uid://b2g3cn28a8jbp" path="res://assets/ui/game_finish/victory_defeat_AGAINBUTTON.png" id="3_vqpnd"]
 
 [node name="Defeat" type="CanvasLayer"]
 visible = false

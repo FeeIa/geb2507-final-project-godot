@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg52j3hsasve2"]
+
+[ext_resource type="Script" uid="uid://de0cr8rsg34wq" path="res://scripts/consumables/consumable_inventory.gd" id="1_t2x3y"]
+
+[node name="ConsumableInventory" type="Node2D"]
+script = ExtResource("1_t2x3y")

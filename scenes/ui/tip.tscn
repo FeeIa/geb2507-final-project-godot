@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bixcrpwr7lpr0"]
+
+[ext_resource type="Texture2D" uid="uid://dl82tqx7pga6h" path="res://assets/ui/misc/healthpoint_explanation.png" id="1_5i7in"]
+[ext_resource type="Script" uid="uid://bujuugkvcyscw" path="res://scripts/ui/tip.gd" id="1_vfp22"]
+
+[node name="Tip" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_vfp22")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -322.0
+offset_top = -205.0
+offset_right = 1598.0
+offset_bottom = 875.0
+scale = Vector2(0.75, 0.75)
+mouse_filter = 2
+texture = ExtResource("1_5i7in")

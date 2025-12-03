@@ -1,30 +1,56 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4mo6ybwwc588"]
+[gd_scene load_steps=6 format=3 uid="uid://b4mo6ybwwc588"]
 
 [ext_resource type="Script" uid="uid://c0x1tp225cplv" path="res://scripts/towers/tower_menu.gd" id="1_sg2c4"]
+[ext_resource type="Texture2D" uid="uid://ci8kri1y814e6" path="res://assets/towers/nkcell/explanation.png" id="2_vhrvr"]
+[ext_resource type="Texture2D" uid="uid://ioyl8623rnmn" path="res://assets/ui/misc/close_icon.png" id="3_bvub4"]
+[ext_resource type="Texture2D" uid="uid://u4v7ptp0sy0u" path="res://assets/ui/misc/upgrade_button.png" id="4_c8dvd"]
+[ext_resource type="Texture2D" uid="uid://bu3myyy8qdq6c" path="res://assets/ui/misc/sell_button.png" id="5_ems8k"]
 
 [node name="TowerMenu" type="CanvasLayer"]
 visible = false
 script = ExtResource("1_sg2c4")
 
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.49019608)
+
+[node name="Explanation" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_vhrvr")
+
+[node name="Close" type="Button" parent="."]
+offset_left = 1473.0
+offset_top = 84.0
+offset_right = 1591.0
+offset_bottom = 203.0
+icon = ExtResource("3_bvub4")
+flat = true
+
 [node name="Upgrade" type="Button" parent="."]
-offset_left = 290.0
-offset_top = 527.0
-offset_right = 642.0
-offset_bottom = 634.0
-text = "Upgrade"
+offset_left = 1001.0
+offset_top = 685.0
+offset_right = 1307.0
+offset_bottom = 826.0
+icon = ExtResource("4_c8dvd")
+flat = true
 
 [node name="Sell" type="Button" parent="."]
-offset_left = 708.0
-offset_top = 521.0
-offset_right = 1038.0
-offset_bottom = 629.0
-text = "Sell"
+offset_left = 628.0
+offset_top = 684.0
+offset_right = 922.0
+offset_bottom = 829.0
+icon = ExtResource("5_ems8k")
+flat = true
 
-[node name="Name" type="Label" parent="."]
-offset_left = 507.0
-offset_top = 319.0
-offset_right = 831.0
-offset_bottom = 460.0
-text = "Insert Tower Name here"
+[node name="Stats" type="Label" parent="."]
+modulate = Color(0.06022255, 0.574428, 0.7246271, 1)
+offset_left = 672.0
+offset_top = 128.0
+offset_right = 1266.0
+offset_bottom = 269.0
+theme_override_font_sizes/font_size = 32
+text = "Insert Tower Damage Here"
 horizontal_alignment = 1
 vertical_alignment = 1

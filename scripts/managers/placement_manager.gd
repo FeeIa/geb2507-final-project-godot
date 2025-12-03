@@ -1,10 +1,10 @@
 extends Node2D
 
-@export var tower_base_scene: PackedScene = preload("res://scenes/towers/base_tower.tscn")
 @export var tower_container: Node2D
 
 var is_placing: bool = false
 var preview_instance: Node2D
+var tower_base_scene: PackedScene = preload("res://scenes/towers/base_tower.tscn")
 
 func _ready():
 	if !tower_container:
@@ -71,10 +71,10 @@ func place_tower(cell: Vector2i):
 	GridManager.occupy_cell(cell)
 	
 	var tower_type = preview_instance.tower_type
-	
 	var tower_instance = tower_base_scene.instantiate()
-	tower_instance.set_script(load("res://scripts/towers/%s.gd" % tower_type))
-	tower_instance.init(tower_type, cell)
-	tower_instance.position = GridManager.grid_to_world(cell)
-	
+	var scr = load("res://scripts/towers/%s.gd" % tower_type)
+	if scr:
+		tower_instance.set_script(scr)
+		
 	tower_container.add_child(tower_instance)
+	tower_instance.init(tower_type, cell)

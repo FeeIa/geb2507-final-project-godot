@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://6v64mt0vvim5"]
+[gd_scene load_steps=5 format=3 uid="uid://6v64mt0vvim5"]
 
-[ext_resource type="Texture2D" uid="uid://c5fuj1kn1npmv" path="res://assets/enemies/default.svg" id="1_7p1mj"]
+[ext_resource type="Texture2D" uid="uid://c5fuj1kn1npmv" path="res://assets/enemies/default/default.svg" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://snm0ftj2k1dr" path="res://scripts/enemies/base_enemy.gd" id="1_8e3ao"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qf3h2"]
+size = Vector2(300, 300)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6xk8f"]
 radius = 75.0
@@ -10,12 +13,23 @@ radius = 75.0
 script = ExtResource("1_8e3ao")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0, 0, 1)
 texture = ExtResource("1_7p1mj")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("RectangleShape2D_qf3h2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6xk8f")
 
-[node name="HPBar" type="ProgressBar" parent="."]
-offset_right = 4.0
-offset_bottom = 27.0
+[node name="HP" type="Label" parent="."]
+visible = false
+offset_left = -108.0
+offset_top = -150.0
+offset_right = 109.0
+offset_bottom = -60.0
+theme_override_font_sizes/font_size = 36
+text = "6767 / 69420 HP"
+horizontal_alignment = 1
+vertical_alignment = 1

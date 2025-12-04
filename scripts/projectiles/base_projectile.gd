@@ -27,6 +27,11 @@ func _process(delta):
 				
 			target_enemy.last_hit_by = source_tower
 			target_enemy.take_damage(source_tower.curr_damage, source_tower.tower_type)
+			do_something_after_hit()
 			queue_free()
 	else:
 		queue_free()
+
+# Inherit in child
+func do_something_after_hit():
+	pass

@@ -1,0 +1,9 @@
+{
+	"hp": 150,
+	"speed": 65,
+	"level_money_drop": 30,
+	"lives_damage": 5,
+	"resistances": {"macrophage": 1},
+	"texture": "res://assets/enemies/syncytium/sprite.png",
+	"explanation": "res://assets/enemies/syncytium/explanation.png"
+}

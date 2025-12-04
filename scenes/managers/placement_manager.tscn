@@ -1,6 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://cuthboifek61e"]
+[gd_scene load_steps=5 format=3 uid="uid://cuthboifek61e"]
 
 [ext_resource type="Script" uid="uid://cil66dykqbd1" path="res://scripts/managers/placement_manager.gd" id="1_wv3iy"]
+[ext_resource type="PackedScene" uid="uid://b4ei013sl4ohq" path="res://scenes/ui/highlight_square.tscn" id="2_lwjbm"]
+[ext_resource type="Texture2D" uid="uid://ioyl8623rnmn" path="res://assets/ui/misc/close_icon.png" id="3_58l0v"]
+[ext_resource type="PackedScene" uid="uid://pweqmyctur4g" path="res://scenes/ui/tower_place_icon.tscn" id="3_x366m"]
 
-[node name="PlacementManager" type="Node2D"]
+[node name="PlacementManager" type="CanvasLayer"]
 script = ExtResource("1_wv3iy")
+
+[node name="HighlightSquare" parent="." instance=ExtResource("2_lwjbm")]
+visible = false
+
+[node name="PlaceMenu" type="CanvasGroup" parent="."]
+visible = false
+
+[node name="Close" type="Button" parent="PlaceMenu"]
+offset_left = -58.0
+offset_top = -190.0
+offset_right = 60.0
+offset_bottom = -71.0
+icon = ExtResource("3_58l0v")
+flat = true
+
+[node name="Container" type="HBoxContainer" parent="PlaceMenu"]
+offset_left = -587.00006
+offset_top = 114.00001
+offset_right = 2352.5
+offset_bottom = 290.0
+scale = Vector2(0.4, 0.4)
+alignment = 1
+
+[node name="ATP" parent="PlaceMenu/Container" instance=ExtResource("3_x366m")]
+layout_mode = 2
+
+[node name="ATP2" parent="PlaceMenu/Container" instance=ExtResource("3_x366m")]
+layout_mode = 2
+
+[node name="ATP3" parent="PlaceMenu/Container" instance=ExtResource("3_x366m")]
+layout_mode = 2
+
+[node name="ATP4" parent="PlaceMenu/Container" instance=ExtResource("3_x366m")]
+layout_mode = 2

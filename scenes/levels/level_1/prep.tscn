@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c35ior21dgkj3"]
+[gd_scene load_steps=9 format=3 uid="uid://c35ior21dgkj3"]
 
 [ext_resource type="Script" uid="uid://cyc6olprrwlod" path="res://scenes/levels/level_1/prep.gd" id="1_6tnn2"]
-[ext_resource type="Texture2D" uid="uid://c0d5iwu38h8w2" path="res://assets/ui/levels/level_1/prep/level1_preparation_withouttitle_button_buff.png" id="1_wy0w6"]
-[ext_resource type="Texture2D" uid="uid://dtc66f0a776sk" path="res://assets/ui/levels/level_1/prep/level1_preparation_levertitle.png" id="2_habd4"]
+[ext_resource type="Texture2D" uid="uid://b36bq4kd71mb6" path="res://assets/ui/levels/level_1/prep/level1_preparation_withoutbutton_buff.png" id="2_6tnn2"]
 [ext_resource type="Texture2D" uid="uid://d2fsm2r35ragl" path="res://assets/consumables/energy_bar.png" id="3_tq4hi"]
 [ext_resource type="Texture2D" uid="uid://dt43l6nw4hlt3" path="res://assets/consumables/fever_medicine.png" id="4_b4jn7"]
 [ext_resource type="Texture2D" uid="uid://dcsvhky5j1e5k" path="res://assets/consumables/good_sleep.png" id="5_6tnn2"]
@@ -16,14 +15,7 @@ script = ExtResource("1_6tnn2")
 [node name="Background" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("1_wy0w6")
-
-[node name="Title" type="TextureRect" parent="."]
-offset_left = 779.0
-offset_top = 3.0
-offset_right = 1916.0
-offset_bottom = 161.0
-texture = ExtResource("2_habd4")
+texture = ExtResource("2_6tnn2")
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 

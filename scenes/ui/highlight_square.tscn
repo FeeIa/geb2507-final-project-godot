@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4ei013sl4ohq"]
+
+[ext_resource type="Script" uid="uid://pmmg0q6sgikv" path="res://scripts/ui/highlight_square.gd" id="1_5550s"]
+
+[node name="HighlightSquare" type="Node2D"]
+script = ExtResource("1_5550s")

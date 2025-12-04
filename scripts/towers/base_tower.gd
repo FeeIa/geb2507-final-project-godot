@@ -83,16 +83,25 @@ func is_body_in_cell_range(body: Node) -> bool:
 	return dist <= cell_range
 
 func pop_next_target():
+	var to_delete: Array = []
+	var found: bool = false
+	
 	for e in target_queue:
 		if not is_instance_valid(e):
-			target_queue.erase(e)
+			to_delete.push_back(e)
 			continue
 		if not is_body_in_cell_range(e):
 			continue
-		current_target = e
-		return
 		
-	current_target = null
+		current_target = e
+		found = true
+		
+	for e in to_delete:
+		target_queue.erase(e)
+	to_delete.clear()
+	
+	if not found:
+		current_target = null
 # Load the tower stats, which is called upon initialization and upgrades
 func load_stats():
 	props = data.get("props")["level_%d" % level]
@@ -107,7 +116,11 @@ func load_stats():
 func load_appearance():
 	sprite = $Sprite2D
 	textures = data.get("textures")["level_%d" % level]
-	sprite.texture = load(textures.get(curr_texture_type))
+	var txtr = load(textures.get(curr_texture_type, "res://assets/towers/default.svg"))
+	if not txtr:
+		txtr = load("res://assets/towers/default.svg")
+		
+	sprite.texture = txtr
 	
 	var target_size = Vector2(162.5, 162.5)
 	var scl = target_size / sprite.texture.get_size()

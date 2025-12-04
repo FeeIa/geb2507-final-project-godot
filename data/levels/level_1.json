@@ -1,50 +1,53 @@
 {
-	"level_money": 100,
+	"level_money": 40,
+	"money_gain_per_wave": 10,
 	"lives": 10,
+	"grid_center_offset": [5.25, 82.5],
+	"available_towers": [
+		"macrophage",
+		"neutrophil",
+		"nkcell"
+	],
 	"waves": [
 		[
-			{"type": "fluvirus", "count": 5, "interval": 1.0}
+			{"type": "fluvirus", "count": 5, "interval": 2.0}
 		],
 		[
-			{"type": "fluvirus", "count": 5, "interval": 1.0},
+			{"type": "fluvirus", "count": 8, "interval": 1.0},
 		],
 		[
-			{"type": "fluvirus", "count": 7, "interval": 1.0},
+			{"type": "fluvirus", "count": 6, "interval": 2.0},
+			{"type": "adenovirus", "count": 1, "interval": 2.0},
 		],
 		[
 			{"type": "fluvirus", "count": 6, "interval": 2.0},
 			{"type": "adenovirus", "count": 2, "interval": 2.0},
 		],
 		[
-			{"type": "fluvirus", "count": 5, "interval": 2.0},
-			{"type": "adenovirus", "count": 2, "interval": 2.0},
-			{"type": "strepto", "count": 1, "interval": 2.0}
+			{"type": "fluvirus", "count": 12, "interval": 3.0},
+			{"type": "adenovirus", "count": 3, "interval": 3.0},
 		],
-		[
-			{"type": "fluvirus", "count": 5, "interval": 2.0},
-			{"type": "adenovirus", "count": 2, "interval": 2.0},
-			{"type": "strepto", "count": 3, "interval": 2.0}
-		]
 	],
-	"grid_center_offset": [6.5, 82.5],
-	"path": [
-		[0, 0],
-		[0, 1],
-		[0, 2],
-		[0, 3],
-		[1, 3],
-		[2, 3],
-		[3, 3],
-		[3, 2],
-		[4, 2],
-		[5, 2],
-		[5, 1],
-		[6, 1],
-		[7, 1],
-		[7, 2],
-		[7, 3],
-		[7, 4],
-		[8, 4],
-		[9, 4]
+	"paths": [
+		[
+			[0, 0],
+			[0, 1],
+			[0, 2],
+			[0, 3],
+			[1, 3],
+			[2, 3],
+			[3, 3],
+			[3, 2],
+			[4, 2],
+			[5, 2],
+			[5, 1],
+			[6, 1],
+			[7, 1],
+			[7, 2],
+			[7, 3],
+			[7, 4],
+			[8, 4],
+			[9, 4]
+		]
 	]
 }

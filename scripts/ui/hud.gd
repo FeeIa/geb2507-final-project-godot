@@ -17,16 +17,6 @@ func _ready():
 	_update_level_money()
 	_update_lives()
 	_update_current_wave()
-	
-	placement_manager = get_node(placement_manager_path)
-	if placement_manager:
-		$Place.pressed.connect(_on_place_button)
-		$Place2.pressed.connect(func():
-			placement_manager.start_placing("nkcell")
-		)
-		$Place3.pressed.connect(func():
-			placement_manager.start_placing("neutrophil")
-		)
 		
 func _on_place_button():
 	placement_manager.start_placing("macrophage")

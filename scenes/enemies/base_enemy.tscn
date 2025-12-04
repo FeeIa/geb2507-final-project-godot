@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://snm0ftj2k1dr" path="res://scripts/enemies/base_enemy.gd" id="1_8e3ao"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qf3h2"]
-size = Vector2(300, 300)
+size = Vector2(275, 275)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6xk8f"]
 radius = 75.0
@@ -33,3 +33,6 @@ theme_override_font_sizes/font_size = 36
 text = "6767 / 69420 HP"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SlowedTimer" type="Timer" parent="."]
+wait_time = 3.0

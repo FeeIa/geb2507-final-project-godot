@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://drw30mlgpj6e0"]
+[gd_scene load_steps=9 format=3 uid="uid://drw30mlgpj6e0"]
 
 [ext_resource type="PackedScene" uid="uid://dahyjrhrrmadj" path="res://scenes/managers/level_manager.tscn" id="1_06ted"]
 [ext_resource type="Texture2D" uid="uid://cfjy1j5lcvcii" path="res://assets/ui/levels/level_1/map/mouth.png" id="2_dmms2"]
 [ext_resource type="Texture2D" uid="uid://23sk07wn05f" path="res://assets/ui/levels/level_1/map/level1.png" id="3_2t0o2"]
-[ext_resource type="PackedScene" uid="uid://cuthboifek61e" path="res://scenes/managers/placement_manager.tscn" id="5_83pdl"]
 [ext_resource type="PackedScene" uid="uid://chgpfsdm0j6vu" path="res://scenes/towers/tower_container.tscn" id="6_2t0o2"]
 [ext_resource type="Texture2D" uid="uid://d3y7nav0gax2g" path="res://assets/ui/levels/level_1/map/Q_maincharacter.png" id="6_vla06"]
 [ext_resource type="PackedScene" uid="uid://dk35bfeb3sns3" path="res://scenes/enemies/enemy_container.tscn" id="7_fjy8c"]
@@ -12,9 +11,10 @@
 
 [node name="Level1" type="Node2D"]
 
-[node name="LevelManager" parent="." node_paths=PackedStringArray("enemy_container") instance=ExtResource("1_06ted")]
+[node name="LevelManager" parent="." node_paths=PackedStringArray("enemy_container", "tower_container") instance=ExtResource("1_06ted")]
 level = 1
 enemy_container = NodePath("../EnemyContainer")
+tower_container = NodePath("../TowerContainer")
 
 [node name="Mouth" type="TextureRect" parent="."]
 offset_right = 40.0
@@ -25,9 +25,6 @@ texture = ExtResource("2_dmms2")
 offset_right = 1928.0
 offset_bottom = 1116.0
 texture = ExtResource("3_2t0o2")
-
-[node name="PlacementManager" parent="." node_paths=PackedStringArray("tower_container") instance=ExtResource("5_83pdl")]
-tower_container = NodePath("../TowerContainer")
 
 [node name="TowerContainer" parent="." instance=ExtResource("6_2t0o2")]
 
@@ -46,4 +43,3 @@ offset_bottom = 40.0
 texture = ExtResource("7_mohx4")
 
 [node name="Hud" parent="." instance=ExtResource("8_lxak7")]
-placement_manager_path = NodePath("../PlacementManager")

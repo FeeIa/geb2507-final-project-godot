@@ -1,29 +1,39 @@
-[gd_scene load_steps=6 format=3 uid="uid://comxx4fatil0f"]
+[gd_scene load_steps=8 format=3 uid="uid://comxx4fatil0f"]
 
 [ext_resource type="PackedScene" uid="uid://dahyjrhrrmadj" path="res://scenes/managers/level_manager.tscn" id="1_j2425"]
 [ext_resource type="PackedScene" uid="uid://b8av088iu0opx" path="res://scenes/ui/hud.tscn" id="2_ra442"]
-[ext_resource type="PackedScene" uid="uid://be2urwsaj6pqr" path="res://scenes/managers/grid_manager.tscn" id="3_fiq81"]
-[ext_resource type="PackedScene" uid="uid://cuthboifek61e" path="res://scenes/managers/placement_manager.tscn" id="4_fiq81"]
-[ext_resource type="Texture2D" uid="uid://mlbkyrnpphn3" path="res://assets/characters/main/maincharactor_fever.png" id="5_l37oo"]
+[ext_resource type="Texture2D" uid="uid://bysq5k1k8hp85" path="res://assets/ui/levels/level_2/map/level2_mapbg_without buttons.png" id="2_svdjm"]
+[ext_resource type="Texture2D" uid="uid://c3yonsf6ybw1p" path="res://assets/ui/levels/level_2/map/level2_mapgridcellonly.png" id="3_i5yil"]
+[ext_resource type="PackedScene" uid="uid://chgpfsdm0j6vu" path="res://scenes/towers/tower_container.tscn" id="4_dck14"]
+[ext_resource type="PackedScene" uid="uid://dk35bfeb3sns3" path="res://scenes/enemies/enemy_container.tscn" id="5_36jib"]
+[ext_resource type="Texture2D" uid="uid://d3y7nav0gax2g" path="res://assets/ui/levels/level_1/map/Q_maincharacter.png" id="6_5akkt"]
 
 [node name="Level2" type="Node2D"]
 
-[node name="LevelManager" parent="." node_paths=PackedStringArray("grid_manager", "enemy_container") instance=ExtResource("1_j2425")]
-level_name = "level_2"
-grid_manager = NodePath("../GridManager")
+[node name="LevelManager" parent="." node_paths=PackedStringArray("enemy_container", "tower_container") instance=ExtResource("1_j2425")]
+level = 2
 enemy_container = NodePath("../EnemyContainer")
+tower_container = NodePath("../TowerContainer")
+
+[node name="Lung" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_svdjm")
+
+[node name="Grid" type="TextureRect" parent="."]
+offset_right = 1928.0
+offset_bottom = 1116.0
+texture = ExtResource("3_i5yil")
+
+[node name="TowerContainer" parent="." instance=ExtResource("4_dck14")]
+
+[node name="EnemyContainer" parent="." instance=ExtResource("5_36jib")]
+
+[node name="MainCharacter" type="TextureRect" parent="."]
+offset_left = 932.0
+offset_top = 497.0
+offset_right = 1127.0
+offset_bottom = 711.0
+texture = ExtResource("6_5akkt")
 
 [node name="Hud" parent="." instance=ExtResource("2_ra442")]
-placement_manager_path = NodePath("../PlacementManager")
-
-[node name="GridManager" parent="." instance=ExtResource("3_fiq81")]
-
-[node name="PlacementManager" parent="." instance=ExtResource("4_fiq81")]
-grid_manager_path = NodePath("../GridManager")
-
-[node name="Character" type="Sprite2D" parent="."]
-position = Vector2(83.000015, 965)
-scale = Vector2(0.18711878, 0.18711878)
-texture = ExtResource("5_l37oo")
-
-[node name="EnemyContainer" type="Node" parent="."]

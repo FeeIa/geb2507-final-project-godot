@@ -23,6 +23,7 @@ var intro_viewed: bool = false
 var level_money: int = 0
 var lives: int = 0
 var current_wave: int = 0
+var money_gain_per_wave: int = 0
 
 # Load level scene
 # Params: level_name
@@ -69,7 +70,7 @@ func lose_life(amount: int = 1):
 
 # Complete wave and reward monyy
 func complete_wave():
-	add_level_money(100)
+	add_level_money(money_gain_per_wave)
 	wave_completed.emit()
 
 # Start next wave

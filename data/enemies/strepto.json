@@ -1,0 +1,9 @@
+{
+	"hp": 30,
+	"speed": 130,
+	"level_money_drop": 10,
+	"lives_damage": 5,
+	"resistances": {"macrophage": 1},
+	"texture": "res://assets/enemies/strepto/sprite.png",
+	"explanation": "res://assets/enemies/strepto/explanation.png"
+}

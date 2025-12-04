@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://pweqmyctur4g"]
+
+[ext_resource type="Texture2D" uid="uid://cnmg4t0erlch7" path="res://assets/ui/misc/atppricebutton.png" id="2_fgfl5"]
+[ext_resource type="Texture2D" uid="uid://cf0waht1ecsfh" path="res://assets/towers/bcell/level_1/base.png" id="2_njefc"]
+
+[node name="TowerPlaceIcon" type="TextureRect"]
+offset_left = -318.0
+offset_top = 57.0
+offset_right = 328.0
+offset_bottom = 299.0
+texture = ExtResource("2_fgfl5")
+
+[node name="Icon" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.492
+anchor_top = -0.238
+anchor_right = 0.492
+anchor_bottom = -0.238
+offset_left = -241.832
+offset_top = -432.404
+offset_right = 248.168
+offset_bottom = 49.596
+icon = ExtResource("2_njefc")
+flat = true
+
+[node name="Amount" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.61600006
+anchor_top = 0.48800004
+anchor_right = 0.61600006
+anchor_bottom = 0.48800004
+offset_left = 0.063964844
+offset_top = -44.09601
+offset_right = 195.06396
+offset_bottom = 43.90399
+theme_override_colors/font_color = Color(5.4869056e-06, 0.56338274, 0.73258096, 1)
+theme_override_font_sizes/font_size = 64
+text = "999"
+vertical_alignment = 1

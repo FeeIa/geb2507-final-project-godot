@@ -1,0 +1,127 @@
+[gd_scene load_steps=9 format=3 uid="uid://d0y8y36ripscc"]
+
+[ext_resource type="Script" uid="uid://cyvxrjaw07la2" path="res://scenes/levels/level_2/prep.gd" id="1_fq4fh"]
+[ext_resource type="Texture2D" uid="uid://bhvxvvpgmwf5x" path="res://assets/ui/levels/level_2/prep/level2_preparation_withoutbutton_buff.png" id="1_i52tw"]
+[ext_resource type="Texture2D" uid="uid://d2fsm2r35ragl" path="res://assets/consumables/energy_bar.png" id="3_st3nx"]
+[ext_resource type="Texture2D" uid="uid://dt43l6nw4hlt3" path="res://assets/consumables/fever_medicine.png" id="4_nkqdo"]
+[ext_resource type="Texture2D" uid="uid://dcsvhky5j1e5k" path="res://assets/consumables/good_sleep.png" id="5_luxih"]
+[ext_resource type="Texture2D" uid="uid://m0utk1w8thjt" path="res://assets/consumables/vitamin_c.png" id="6_bfb4d"]
+[ext_resource type="Texture2D" uid="uid://dsd7pbavapdvg" path="res://assets/ui/levels/level_1/prep/level1_preparation_startbutton.png" id="7_rpqf7"]
+[ext_resource type="Texture2D" uid="uid://b2itfe0v3t4ii" path="res://assets/ui/misc/healthpoint_icon.png" id="8_v41pa"]
+
+[node name="Prep" type="Node2D"]
+script = ExtResource("1_fq4fh")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_i52tw")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+
+[node name="EnergyBar" type="Button" parent="CanvasGroup"]
+offset_left = 835.0
+offset_top = 724.0
+offset_right = 1107.0
+offset_bottom = 973.0
+icon = ExtResource("3_st3nx")
+flat = true
+
+[node name="Amount" type="Label" parent="CanvasGroup/EnergyBar"]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 166.0
+offset_right = 289.0
+offset_bottom = 256.0
+theme_override_colors/font_color = Color(5.4869056e-06, 0.56338274, 0.73258096, 1)
+theme_override_font_sizes/font_size = 49
+text = "x99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FeverMedicine" type="Button" parent="CanvasGroup"]
+offset_left = 1105.0
+offset_top = 731.0
+offset_right = 1377.0
+offset_bottom = 980.0
+icon = ExtResource("4_nkqdo")
+flat = true
+
+[node name="Amount" type="Label" parent="CanvasGroup/FeverMedicine"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 158.0
+offset_right = 265.0
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(5.4869056e-06, 0.56338274, 0.73258096, 1)
+theme_override_font_sizes/font_size = 49
+text = "x99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoodSleep" type="Button" parent="CanvasGroup"]
+offset_left = 1359.0
+offset_top = 723.0
+offset_right = 1631.0
+offset_bottom = 972.0
+icon = ExtResource("5_luxih")
+flat = true
+
+[node name="Amount" type="Label" parent="CanvasGroup/GoodSleep"]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 163.0
+offset_right = 267.0
+offset_bottom = 253.0
+theme_override_colors/font_color = Color(5.4869056e-06, 0.56338274, 0.73258096, 1)
+theme_override_font_sizes/font_size = 49
+text = "x99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VitaminC" type="Button" parent="CanvasGroup"]
+offset_left = 1641.0
+offset_top = 729.0
+offset_right = 1913.0
+offset_bottom = 978.0
+icon = ExtResource("6_bfb4d")
+flat = true
+
+[node name="Amount" type="Label" parent="CanvasGroup/VitaminC"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 158.0
+offset_right = 237.0
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(5.4869056e-06, 0.56338274, 0.73258096, 1)
+theme_override_font_sizes/font_size = 49
+text = "x99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start" type="Button" parent="."]
+offset_left = 1533.0
+offset_top = 247.0
+offset_right = 1871.0
+offset_bottom = 496.0
+icon = ExtResource("7_rpqf7")
+flat = true
+
+[node name="Star" type="TextureRect" parent="."]
+offset_left = 832.0
+offset_top = 585.0
+offset_right = 992.0
+offset_bottom = 710.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("8_v41pa")
+
+[node name="Amount" type="Label" parent="Star"]
+layout_mode = 0
+offset_left = 170.66664
+offset_top = 1.3332927
+offset_right = 661.33325
+offset_bottom = 120.6666
+theme_override_colors/font_color = Color(5.4869056e-06, 0.56338274, 0.73258096, 1)
+theme_override_font_sizes/font_size = 81
+text = "69420"
+vertical_alignment = 1

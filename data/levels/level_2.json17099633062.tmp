@@ -1,0 +1,68 @@
+{
+	"level_money": 40,
+	"money_gain_per_wave": 10,
+	"lives": 10,
+	"available_towers": [
+		"macrophage",
+		"neutrophil",
+		"nkcell",
+		"bcell"
+	],
+	"waves": [
+		[
+			{"type": "fluvirus", "count": 5, "interval": 1.0}
+		],
+		[
+			{"type": "fluvirus", "count": 5, "interval": 1.0},
+		],
+		[
+			{"type": "fluvirus", "count": 7, "interval": 1.0},
+		],
+		[
+			{"type": "fluvirus", "count": 6, "interval": 2.0},
+			{"type": "adenovirus", "count": 2, "interval": 2.0},
+		],
+		[
+			{"type": "fluvirus", "count": 5, "interval": 2.0},
+			{"type": "adenovirus", "count": 2, "interval": 2.0},
+			{"type": "strepto", "count": 1, "interval": 2.0}
+		],
+		[
+			{"type": "fluvirus", "count": 5, "interval": 2.0},
+			{"type": "adenovirus", "count": 2, "interval": 2.0},
+			{"type": "strepto", "count": 3, "interval": 2.0}
+		],
+		[
+			{"type": "fluvirus", "count": 5, "interval": 2.0},
+			{"type": "adenovirus", "count": 2, "interval": 2.0},
+			{"type": "syncytium", "count": 1, "interval": 2.0}
+		]
+	],
+	"path": [
+		[
+			[0, 0],
+			[0, 1],
+			[0, 2],
+			[0, 3],
+			[0, 4],
+			[1, 4],
+			[2, 4],
+			[2, 3],
+			[3, 3],
+			[3, 2],
+			[4, 2],
+			[5, 2]
+		],
+		[
+			[9, 0],
+			[8, 0],
+			[8, 1],
+			[8, 2],
+			[8, 3],
+			[7, 3],
+			[6, 3],
+			[5, 3],
+			[5, 2]
+		]
+	]
+}

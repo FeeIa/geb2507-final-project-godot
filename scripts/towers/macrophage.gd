@@ -6,7 +6,8 @@ var digest_cooldown: int = -1
 func attack():
 	if is_digesting: return
 	
-	if current_target.has_resistance(tower_type):
+	# Complete resistance
+	if current_target.get_resistance(tower_type) == 1:
 		current_target = null
 		pop_next_target()
 		target_queue.erase(current_target)
@@ -19,6 +20,12 @@ func attack():
 			return
 			
 		current_target.last_hit_by = self
+		
+		var rd = randf()
+		var resisted: bool = rd <= current_target.get_resistance(tower_type)
+		
+		if resisted: return
+			
 		current_target.die()
 		upd_sprite()
 		if kill_count >= 2:

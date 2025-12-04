@@ -2,9 +2,10 @@ extends Node
 
 @export var level: int
 @export var enemy_container: Node2D
+@export var tower_container: Node2D
 
 var waves = []
-var path_cells = []
+var paths = []
 var current_wave_idx = 0
 var discovered_enemies: Array[String] = []
 
@@ -21,6 +22,9 @@ func _ready():
 		return
 	if !enemy_container:
 		print("[ERROR] Missing enemy_container in LevelManager")
+		return
+	if !tower_container:
+		print("[ERROR] Missing tower_container in LevelManager")
 		return
 		
 	GameManager.game_over.connect(_on_game_over)
@@ -45,21 +49,29 @@ func _ready():
 func load_level():
 	var file = FileAccess.open("res://data/levels/level_%s.json" % level, FileAccess.READ)
 	if file:
-		var data = JSON.parse_string(file.get_as_text())
+		var data: Dictionary = JSON.parse_string(file.get_as_text())
 		if not data:
 			print("[ERROR] Empty JSON data for level " + str(level))
 			return
 
 		GameManager.level_money = data.get("level_money", 50)
 		GameManager.lives = data.get("lives", 20)
+		GameManager.money_gain_per_wave = data.get("money_gain_per_wave", 0)
+			
 		max_lives = GameManager.lives
 		waves = data.get("waves")
-		path_cells = data.get("path")
+		paths = data.get("paths")
 		
 		var c_off = data.get("grid_center_offset")
 		GridManager.init_grid(Vector2(c_off[0], c_off[1]))
-		for cell in path_cells:
-			GridManager.turn_cell_to_blocked(Vector2i(cell[0], cell[1]))
+		for path_cells in paths:
+			for cell in path_cells:
+				GridManager.turn_cell_to_blocked(Vector2i(cell[0], cell[1]))
+		
+		var avail_towers: Array = data.get("available_towers")
+		for key in PlacementManager.available_towers.keys():
+			PlacementManager.available_towers[key] = avail_towers.has(key)
+		PlacementManager.init(tower_container, GridManager.cell_size)
 		
 		file.close()
 	else:
@@ -119,6 +131,7 @@ func spawn_enemy(enemy_id: String):
 	var e = preload("res://scenes/enemies/base_enemy.tscn").instantiate()
 	e.enemy_type = enemy_id
 	
+	var path_cells = paths.pick_random()
 	for cell in path_cells:
 		var world_pos: Vector2 = GridManager.grid_to_world(Vector2i(cell[0], cell[1]))
 		e.path_points.append(world_pos)
@@ -130,6 +143,7 @@ func _on_game_over():
 	game_over = true
 	enemy_container.queue_free()
 	Defeat.open()
+	PlacementManager.turn_off()
 	
 # On level completed
 func _on_level_completed():
@@ -145,3 +159,13 @@ func _on_level_completed():
 	
 	GameManager.add_global_money(pass_level)
 	Victory.open(pass_level)
+	PlacementManager.turn_off()
+
+# Placement purposes
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouse and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+		var mouse_pos = get_viewport().get_mouse_position()
+		var cell = GridManager.world_to_grid(mouse_pos)
+		
+		if GridManager.is_cell_valid(cell):
+			PlacementManager.open_menu_for(cell)

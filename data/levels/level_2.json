@@ -1,42 +1,69 @@
 {
-	"level_money": 100,
+	"level_money": 40,
+	"money_gain_per_wave": 10,
 	"lives": 10,
-	"waves": [
-		{"type": "test", "count": 50, "interval": 0.1},
-		{"type": "influenza", "count": 100, "interval": 0.1},
-		{"type": "cancer", "count": 10, "interval": 0.25},
-		{"type": "cancer", "count": 20, "interval": 0.15},
-		{"type": "cancer", "count": 50, "interval": 0.1},
-		{"type": "cancer", "count": 100, "interval": 0.05},
-		{"type": "cancer", "count": 500, "interval": 0.01},
+	"grid_center_offset": [5.25, 82.5],
+	"available_towers": [
+		"macrophage",
+		"neutrophil",
+		"nkcell",
+		"bcell"
 	],
-	"path": [
-		[11, 1],
-		[10, 1],
-		[9, 1],
-		[8, 1],
-		[7, 1],
-		[6, 1],
-		[5, 1],
-		[5, 2],
-		[5, 3],
-		[6, 3],
-		[7, 3],
-		[8, 3],
-		[9, 3],
-		[9, 4],
-		[9, 5],
-		[8, 5],
-		[7, 5],
-		[6, 5],
-		[5, 5],
-		[4, 5],
-		[3, 5],
-		[2, 5],
-		[2, 4],
-		[2, 3],
-		[2, 2],
-		[1, 2],
-		[0, 2]
+	"waves": [
+		[
+			{"type": "fluvirus", "count": 5, "interval": 1.0}
+		],
+		[
+			{"type": "fluvirus", "count": 5, "interval": 1.0},
+		],
+		[
+			{"type": "fluvirus", "count": 7, "interval": 1.0},
+		],
+		[
+			{"type": "fluvirus", "count": 6, "interval": 2.0},
+			{"type": "adenovirus", "count": 2, "interval": 2.0},
+		],
+		[
+			{"type": "fluvirus", "count": 5, "interval": 2.0},
+			{"type": "adenovirus", "count": 2, "interval": 2.0},
+			{"type": "strepto", "count": 1, "interval": 2.0}
+		],
+		[
+			{"type": "fluvirus", "count": 5, "interval": 2.0},
+			{"type": "adenovirus", "count": 2, "interval": 2.0},
+			{"type": "strepto", "count": 3, "interval": 2.0}
+		],
+		[
+			{"type": "fluvirus", "count": 5, "interval": 2.0},
+			{"type": "adenovirus", "count": 2, "interval": 2.0},
+			{"type": "syncytium", "count": 1, "interval": 2.0}
+		]
+	],
+	"paths": [
+		[
+			[0, 0],
+			[0, 1],
+			[0, 2],
+			[0, 3],
+			[0, 4],
+			[1, 4],
+			[2, 4],
+			[2, 3],
+			[3, 3],
+			[3, 2],
+			[4, 2],
+			[5, 2]
+		],
+		[
+			[9, 0],
+			[8, 0],
+			[8, 1],
+			[8, 2],
+			[8, 3],
+			[7, 3],
+			[6, 3],
+			[5, 3],
+			[5, 2]
+		]
 	]
 }

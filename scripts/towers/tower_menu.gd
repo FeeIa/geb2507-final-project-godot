@@ -29,9 +29,16 @@ func update_stats():
 	if not selected_tower or not is_instance_valid(selected_tower):
 		return
 		
-	$Stats.text = "Damage: " + str(selected_tower.curr_damage) + " Range: " + str(selected_tower.curr_attack_radius) + " Cooldown: " + str(selected_tower.curr_attack_cooldown)
+	$Stats.text = "Damage: " + str(selected_tower.curr_damage) + " | Range: " + str(selected_tower.cell_range) + " | Cooldown: " + str(selected_tower.curr_attack_cooldown) + "s"
 	$Upgrade.disabled = not selected_tower.can_upgrade()
+	if not selected_tower.can_upgrade():
+		$UpgradeCost.text = ""
+	else:
+		$UpgradeCost.text = "-" + str(selected_tower.get_next_level_cost()) + " ATP"
+		
+	$SellGain.text = "+" + str(selected_tower.sell_value()) + " ATP"
 
 func close():
 	selected_tower = null
 	visible = false
+	

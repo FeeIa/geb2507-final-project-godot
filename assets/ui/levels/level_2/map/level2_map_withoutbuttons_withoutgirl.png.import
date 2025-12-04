@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rq8bl0wcnojj"
-path="res://.godot/imported/charactor_self_intro_withoutgreybackground.png-1b041f05831f181bb923b30d93c960e1.ctex"
+uid="uid://du7q1dbmmfo42"
+path="res://.godot/imported/level2_map_withoutbuttons_withoutgirl.png-8ff863eafaf0ca0fc8f975e4834428ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/levels/level_1/intro/charactor_self_intro_withoutgreybackground.png"
-dest_files=["res://.godot/imported/charactor_self_intro_withoutgreybackground.png-1b041f05831f181bb923b30d93c960e1.ctex"]
+source_file="res://assets/ui/levels/level_2/map/level2_map_withoutbuttons_withoutgirl.png"
+dest_files=["res://.godot/imported/level2_map_withoutbuttons_withoutgirl.png-8ff863eafaf0ca0fc8f975e4834428ee.ctex"]
 
 [params]
 

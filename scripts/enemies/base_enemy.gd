@@ -4,6 +4,7 @@ var enemy_type: String
 var data = {}
 var max_hp: int
 var curr_hp: int
+var base_speed: float
 var speed: float
 var level_money_drop: int
 var lives_damage: int
@@ -12,7 +13,9 @@ var path_points = []
 var curr_path_idx = 0
 var last_hit_by = null # The last tower that hit it
 
+@onready var sprite = $Sprite2D
 @onready var sprite_area = $Sprite2D/Area2D
+@onready var slowed_timer = $SlowedTimer
 
 func _ready():
 	if enemy_type:
@@ -29,6 +32,10 @@ func _ready():
 	)
 	sprite_area.connect("mouse_exited", func():
 		$HP.visible = false
+	)
+	
+	$SlowedTimer.timeout.connect(func():
+		speed = base_speed	
 	)
 		
 func _process(delta: float):
@@ -55,15 +62,19 @@ func load_stats():
 	data = Database.get_enemy_data(enemy_type)
 	max_hp = data.get("hp", 100)
 	curr_hp = max_hp
-	speed = data.get("speed", 100)
+	base_speed = data.get("speed", 100)
+	speed = base_speed
 	level_money_drop = data.get("level_money_drop", 10)
 	lives_damage = data.get("lives_damage", 1)
 	resistances = data.get("resistances", {})
 	
-	$Sprite2D.texture = load(data.get("texture", "res://assets/enemies/default.svg"))
+	var txtr = load(data.get("texture", "res://assets/enemies/default.svg"))
+	if not txtr:
+		txtr = load("res://assets/enemies/default.svg")
+	sprite.texture =	txtr
 	var target_size = Vector2(162.5, 162.5)
-	var scl = target_size / $Sprite2D.texture.get_size()
-	$Sprite2D.scale = scl
+	var scl = target_size / sprite.texture.get_size()
+	sprite.scale = scl
 	
 # Call this for enemies to take damage
 func take_damage(amount: int, tower_type: String):
@@ -79,6 +90,14 @@ func update_hp():
 	
 func has_resistance(tower_type) -> bool:
 	return resistances.has(tower_type)
+	
+func get_resistance(tower_type):
+	return resistances.get(tower_type, 0)
+		
+# Slow enemy down
+func apply_slow(slow_effect: float):
+	speed = base_speed * (1 - slow_effect)
+	slowed_timer.start()
 		
 # Upon death
 func die():

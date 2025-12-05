@@ -8,6 +8,7 @@ signal wave_completed
 signal wave_changed
 signal level_completed
 signal game_over
+signal spawn_enemy_externally(enemy_type: String, path_points: Array[Vector2])
 
 # Constants
 const DEFAULT_LEVEL_MONEY = 10
@@ -15,7 +16,7 @@ const DEFAULT_LIVES = 10
 
 # Global states
 var global_money: int = 100
-var highest_level_completed: int = 0
+var highest_level_completed: int = 2
 var current_playing_level: int = 0
 var intro_viewed: bool = false
 
@@ -29,7 +30,11 @@ var money_gain_per_wave: int = 0
 # Params: level_name
 func load_level_scene(level: int):
 	if level <= highest_level_completed + 1:
-		FadeTransition.transition_to_scene("res://scenes/levels/level_%d/prep.tscn" % level)
+		var scene_path = "res://scenes/levels/level_%d/prep.tscn" % level
+		if ResourceLoader.exists(scene_path):
+			FadeTransition.transition_to_scene(scene_path)
+		else:
+			FadeTransition.transition_to_scene("res://scenes/ui/level_select.tscn")
 	else:
 		print("Please complete the previous level first!")
 		
@@ -82,6 +87,12 @@ func start_next_wave():
 func complete_level():
 	highest_level_completed = max(highest_level_completed, current_playing_level)
 	level_completed.emit()
+
+func pause_game():
+	get_tree().paused = true
+	
+func unpause_game():
+	get_tree().paused = false
 
 #func _ready():
 	#load_level("level_1")

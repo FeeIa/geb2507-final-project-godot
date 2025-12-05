@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuthboifek61e"]
+[gd_scene load_steps=6 format=3 uid="uid://cuthboifek61e"]
 
 [ext_resource type="Script" uid="uid://cil66dykqbd1" path="res://scripts/managers/placement_manager.gd" id="1_wv3iy"]
 [ext_resource type="PackedScene" uid="uid://b4ei013sl4ohq" path="res://scenes/ui/highlight_square.tscn" id="2_lwjbm"]
 [ext_resource type="Texture2D" uid="uid://ioyl8623rnmn" path="res://assets/ui/misc/close_icon.png" id="3_58l0v"]
 [ext_resource type="PackedScene" uid="uid://pweqmyctur4g" path="res://scenes/ui/tower_place_icon.tscn" id="3_x366m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_58l0v"]
 
 [node name="PlacementManager" type="CanvasLayer"]
 script = ExtResource("1_wv3iy")
@@ -19,6 +21,7 @@ offset_left = -58.0
 offset_top = -190.0
 offset_right = 60.0
 offset_bottom = -71.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_58l0v")
 icon = ExtResource("3_58l0v")
 flat = true
 

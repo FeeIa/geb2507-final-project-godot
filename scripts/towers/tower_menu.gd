@@ -17,7 +17,7 @@ func _ready() -> void:
 		close()
 	)
 	$Close.pressed.connect(close)
-	BuffManager.buffs_changed.connect(update_stats)
+	BuffManager.tower_buffs_changed.connect(update_stats)
 
 func open_for(tower):
 	selected_tower = tower

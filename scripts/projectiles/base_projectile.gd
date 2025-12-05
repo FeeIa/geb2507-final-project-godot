@@ -2,7 +2,7 @@ extends Area2D
 
 var speed: float = 400.0
 var source_tower: Node
-var damage: int
+var damage: float
 var target_enemy: Node = null
 @onready var sprite: Sprite2D = $Sprite2D
 
@@ -26,7 +26,7 @@ func _process(delta):
 				return
 				
 			target_enemy.last_hit_by = source_tower
-			target_enemy.take_damage(source_tower.curr_damage, source_tower.tower_type)
+			target_enemy.take_damage(damage, source_tower.tower_type)
 			do_something_after_hit()
 			queue_free()
 	else:

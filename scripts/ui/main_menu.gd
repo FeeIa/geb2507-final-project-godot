@@ -2,12 +2,10 @@ extends Control
 
 @onready var play = $Play
 @onready var options = $Options
-@onready var cont = $Continue
 
 func _ready():
 	play.pressed.connect(_on_play_pressed)
 	options.pressed.connect(_on_options_pressed)
-	cont.pressed.connect(_on_cont_pressed)	
 	
 func _on_play_pressed():
 	print("PLAY BUTTON PRESSED")
@@ -15,6 +13,3 @@ func _on_play_pressed():
 	
 func _on_options_pressed():
 	print("OPTIONS PRESSED")
-	
-func _on_cont_pressed():
-	print("CONTINUE PRESSED")

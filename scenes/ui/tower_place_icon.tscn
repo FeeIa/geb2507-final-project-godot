@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://pweqmyctur4g"]
+[gd_scene load_steps=4 format=3 uid="uid://pweqmyctur4g"]
 
 [ext_resource type="Texture2D" uid="uid://cnmg4t0erlch7" path="res://assets/ui/misc/atppricebutton.png" id="2_fgfl5"]
 [ext_resource type="Texture2D" uid="uid://cf0waht1ecsfh" path="res://assets/towers/bcell/level_1/base.png" id="2_njefc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fgfl5"]
 
 [node name="TowerPlaceIcon" type="TextureRect"]
 offset_left = -318.0
@@ -21,6 +23,7 @@ offset_left = -241.832
 offset_top = -432.404
 offset_right = 248.168
 offset_bottom = 49.596
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fgfl5")
 icon = ExtResource("2_njefc")
 flat = true
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c35ior21dgkj3"]
+[gd_scene load_steps=11 format=3 uid="uid://c35ior21dgkj3"]
 
 [ext_resource type="Script" uid="uid://cyc6olprrwlod" path="res://scenes/levels/level_1/prep.gd" id="1_6tnn2"]
 [ext_resource type="Texture2D" uid="uid://b36bq4kd71mb6" path="res://assets/ui/levels/level_1/prep/level1_preparation_withoutbutton_buff.png" id="2_6tnn2"]
@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://m0utk1w8thjt" path="res://assets/consumables/vitamin_c.png" id="6_j5fnq"]
 [ext_resource type="Texture2D" uid="uid://dsd7pbavapdvg" path="res://assets/ui/levels/level_1/prep/level1_preparation_startbutton.png" id="7_b4jn7"]
 [ext_resource type="Texture2D" uid="uid://b2itfe0v3t4ii" path="res://assets/ui/misc/healthpoint_icon.png" id="9_j5fnq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6tnn2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j5fnq"]
 
 [node name="Prep" type="Node2D"]
 script = ExtResource("1_6tnn2")
@@ -24,6 +28,7 @@ offset_left = 835.0
 offset_top = 724.0
 offset_right = 1107.0
 offset_bottom = 973.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6tnn2")
 icon = ExtResource("3_tq4hi")
 flat = true
 
@@ -44,6 +49,7 @@ offset_left = 1105.0
 offset_top = 731.0
 offset_right = 1377.0
 offset_bottom = 980.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6tnn2")
 icon = ExtResource("4_b4jn7")
 flat = true
 
@@ -64,6 +70,7 @@ offset_left = 1359.0
 offset_top = 723.0
 offset_right = 1631.0
 offset_bottom = 972.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6tnn2")
 icon = ExtResource("5_6tnn2")
 flat = true
 
@@ -84,6 +91,7 @@ offset_left = 1641.0
 offset_top = 729.0
 offset_right = 1913.0
 offset_bottom = 978.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6tnn2")
 icon = ExtResource("6_j5fnq")
 flat = true
 
@@ -104,6 +112,7 @@ offset_left = 1533.0
 offset_top = 247.0
 offset_right = 1871.0
 offset_bottom = 496.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j5fnq")
 icon = ExtResource("7_b4jn7")
 flat = true
 

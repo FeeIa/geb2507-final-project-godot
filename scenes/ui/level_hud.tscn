@@ -1,14 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://7e5l5tjs8soe"]
+[gd_scene load_steps=12 format=3 uid="uid://7e5l5tjs8soe"]
 
 [ext_resource type="Texture2D" uid="uid://ggpcx2bc8j4p" path="res://assets/ui/levels/level_1/map/level1_map_apt_button.png" id="1_5xwii"]
 [ext_resource type="Script" uid="uid://cswqbxqnsb2as" path="res://scripts/ui/level_hud.gd" id="1_aofc0"]
 [ext_resource type="Texture2D" uid="uid://b4mc0ivx60let" path="res://assets/ui/levels/level_1/map/level1_map_stop_button.png" id="2_aofc0"]
-[ext_resource type="Texture2D" uid="uid://ghmhmjxasbom" path="res://assets/ui/levels/level_1/map/level1_map_exit_button.png" id="3_j7bdr"]
+[ext_resource type="Texture2D" uid="uid://b1py8jmq5v6ey" path="res://assets/ui/misc/livesbutton.png" id="3_tl4dj"]
 [ext_resource type="Texture2D" uid="uid://rtu5720j45es" path="res://assets/ui/levels/level_1/map/level1_map_buff.png" id="5_tl4dj"]
 [ext_resource type="Texture2D" uid="uid://dt43l6nw4hlt3" path="res://assets/consumables/fever_medicine.png" id="6_qfbdd"]
 [ext_resource type="Texture2D" uid="uid://dcsvhky5j1e5k" path="res://assets/consumables/good_sleep.png" id="7_4lsot"]
 [ext_resource type="Texture2D" uid="uid://m0utk1w8thjt" path="res://assets/consumables/vitamin_c.png" id="8_20tkb"]
 [ext_resource type="Texture2D" uid="uid://d2fsm2r35ragl" path="res://assets/consumables/energy_bar.png" id="9_2t7va"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tl4dj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qfbdd"]
 
 [node name="LevelHud" type="CanvasLayer"]
 visible = false
@@ -16,9 +20,9 @@ script = ExtResource("1_aofc0")
 
 [node name="ATP" type="TextureRect" parent="."]
 offset_left = 48.0
-offset_top = 37.0
+offset_top = 52.0
 offset_right = 472.0
-offset_bottom = 171.0
+offset_bottom = 186.0
 texture = ExtResource("1_5xwii")
 
 [node name="Amount" type="Label" parent="ATP"]
@@ -33,20 +37,31 @@ text = "69420"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Pause" type="Button" parent="."]
-offset_left = 1389.0
-offset_top = 20.0
-offset_right = 1570.0
-offset_bottom = 202.0
-icon = ExtResource("2_aofc0")
-flat = true
+[node name="Lives" type="TextureRect" parent="."]
+offset_left = 1279.0
+offset_top = 30.0
+offset_right = 1714.0
+offset_bottom = 206.0
+texture = ExtResource("3_tl4dj")
 
-[node name="Exit" type="Button" parent="."]
-offset_left = 1572.0
-offset_top = 45.0
-offset_right = 1888.0
-offset_bottom = 185.0
-icon = ExtResource("3_j7bdr")
+[node name="Amount" type="Label" parent="Lives"]
+layout_mode = 0
+offset_left = 295.0
+offset_top = 44.0
+offset_right = 416.0
+offset_bottom = 134.0
+theme_override_colors/font_color = Color(5.4869056e-06, 0.56338274, 0.73258096, 1)
+theme_override_font_sizes/font_size = 49
+text = "100"
+vertical_alignment = 1
+
+[node name="Pause" type="Button" parent="."]
+offset_left = 1708.0
+offset_top = 32.0
+offset_right = 1889.0
+offset_bottom = 214.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tl4dj")
+icon = ExtResource("2_aofc0")
 flat = true
 
 [node name="ConsumableSlots" type="CanvasGroup" parent="."]
@@ -65,6 +80,7 @@ offset_top = 43.0
 offset_right = 301.0
 offset_bottom = 292.0
 scale = Vector2(0.5, 0.5)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qfbdd")
 icon = ExtResource("9_2t7va")
 flat = true
 
@@ -94,6 +110,7 @@ offset_top = 51.0
 offset_right = 275.0
 offset_bottom = 261.0
 scale = Vector2(0.5, 0.5)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qfbdd")
 icon = ExtResource("6_qfbdd")
 flat = true
 
@@ -123,6 +140,7 @@ offset_top = 47.0
 offset_right = 288.0
 offset_bottom = 223.0
 scale = Vector2(0.5, 0.5)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qfbdd")
 icon = ExtResource("7_4lsot")
 flat = true
 
@@ -152,6 +170,7 @@ offset_top = 54.0
 offset_right = 222.0
 offset_bottom = 267.0
 scale = Vector2(0.5, 0.5)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qfbdd")
 icon = ExtResource("8_20tkb")
 flat = true
 

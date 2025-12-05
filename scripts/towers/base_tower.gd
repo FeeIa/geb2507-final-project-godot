@@ -7,8 +7,8 @@ var sprite: Sprite2D
 var props: Dictionary
 var cell_range: int
 var textures: Dictionary
-var base_damage: int
-var curr_damage: int
+var base_damage: float
+var curr_damage: float
 var base_attack_radius: float
 var curr_attack_radius: float
 var base_attack_cooldown: float
@@ -39,7 +39,7 @@ func init(type: String, cell_ref: Vector2i = Vector2i(-1, -1)):
 	global_position = GridManager.grid_to_world(cell)
 	
 	load_stats()
-	BuffManager.buffs_changed.connect(apply_buffs)
+	BuffManager.tower_buffs_changed.connect(apply_buffs)
 	
 	# Anything that enters will be pushed to the queue
 	$AttackRadius.connect("body_entered", func(body: Node):
@@ -127,9 +127,9 @@ func load_appearance():
 	sprite.scale = scl
 	
 func apply_buffs():
-	curr_damage = int(base_damage * BuffManager.get_buff_mutli("damage"))
-	curr_attack_cooldown = base_attack_cooldown * BuffManager.get_buff_mutli("attack_cooldown")
-	curr_attack_radius = base_attack_radius * BuffManager.get_buff_mutli("attack_radius")	
+	curr_damage = base_damage * BuffManager.get_tower_buff_mutli("damage")
+	curr_attack_cooldown = base_attack_cooldown * BuffManager.get_tower_buff_mutli("attack_cooldown")
+	curr_attack_radius = base_attack_radius * BuffManager.get_tower_buff_mutli("attack_radius")	
 	
 	$AttackTimer.wait_time = curr_attack_cooldown
 	$AttackRadius/CollisionShape2D.shape.radius = curr_attack_radius

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://qkgb6dum2lu5"]
+[gd_scene load_steps=8 format=3 uid="uid://qkgb6dum2lu5"]
 
 [ext_resource type="Script" uid="uid://vahmv47wjupx" path="res://scripts/ui/level_select.gd" id="1_3shnc"]
 [ext_resource type="Texture2D" uid="uid://b8ntvirp000o0" path="res://assets/ui/level_select/levels_interface_withoutbutton.png" id="2_8yp2s"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://ch0vhbpijk6fk" path="res://assets/ui/level_select/levels_interface_onebutton.png" id="4_i7y2i"]
 [ext_resource type="Texture2D" uid="uid://c6olkgp21frvy" path="res://assets/ui/level_select/levels_interface_twobutton.png" id="5_t2qwf"]
 [ext_resource type="PackedScene" uid="uid://cc73mu77u4ccc" path="res://scenes/ui/intro.tscn" id="9_t2qwf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8yp2s"]
 
 [node name="LevelSelect" type="Node2D"]
 script = ExtResource("1_3shnc")
@@ -20,6 +22,7 @@ offset_left = 794.0
 offset_top = 685.0
 offset_right = 1132.0
 offset_bottom = 877.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8yp2s")
 icon = ExtResource("3_8ehll")
 flat = true
 
@@ -28,6 +31,7 @@ offset_left = 627.0
 offset_top = 332.0
 offset_right = 859.0
 offset_bottom = 552.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8yp2s")
 icon = ExtResource("4_i7y2i")
 flat = true
 
@@ -36,6 +40,7 @@ offset_left = 1062.0
 offset_top = 330.0
 offset_right = 1322.0
 offset_bottom = 547.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8yp2s")
 icon = ExtResource("5_t2qwf")
 flat = true
 

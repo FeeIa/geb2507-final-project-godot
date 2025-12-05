@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://bfms50rglsmfp" path="res://scripts/managers/buff_manager.gd" id="1_rx2xk"]
 
 [node name="BuffManager" type="Node2D"]
+visible = false
 script = ExtResource("1_rx2xk")

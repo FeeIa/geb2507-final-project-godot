@@ -16,7 +16,7 @@ func attack():
 func spawn_proj(pos: Vector2):
 	var proj = proj_scene.instantiate()
 	proj.init_for(self, current_target)
-	proj.damage = curr_damage
+	proj.damage = curr_damage / 2.0
 	proj.speed = 1500
 	proj.global_position = pos
 	get_parent().add_child(proj)

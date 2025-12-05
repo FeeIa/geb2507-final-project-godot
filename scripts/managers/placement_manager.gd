@@ -86,9 +86,9 @@ func place_tower(tower_type: String):
 	GridManager.occupy_cell(selected_cell)
 	
 	var tower_instance = tower_base_scene.instantiate()
-	var scr = load("res://scripts/towers/%s.gd" % tower_type)
-	if scr:
-		tower_instance.set_script(scr)
+	var scr_path = "res://scripts/towers/%s.gd" % tower_type
+	if ResourceLoader.exists(scr_path):
+		tower_instance.set_script(load(scr_path))
 		
 	tower_container.add_child(tower_instance)
 	tower_instance.init(tower_type, selected_cell)

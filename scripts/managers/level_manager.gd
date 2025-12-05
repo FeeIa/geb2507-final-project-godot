@@ -16,6 +16,8 @@ var enemies_count: int = 0
 var game_over = false
 var max_lives: int
 
+@onready var wave_timer = $WaveTimer
+
 func _ready():
 	if !level:
 		print("[ERROR] Missing level in LevelManager")
@@ -38,10 +40,19 @@ func _ready():
 			
 		if enemies_count <= 0:
 			GameManager.complete_wave()
+			wave_timer.start()
 			wave_completed = true
 			
 			if current_wave_idx >= waves.size():
 				GameManager.complete_level()
+	)
+	
+	GameManager.spawn_enemy_externally.connect(func(enemy_name: String, path: Array[Vector2]):
+		spawn_enemy(enemy_name, path, true)
+	)
+	
+	wave_timer.timeout.connect(func():
+		start_next_wave()
 	)
 
 # Load specific level based on the JSON data
@@ -61,6 +72,8 @@ func load_level():
 		max_lives = GameManager.lives
 		waves = data.get("waves")
 		paths = data.get("paths")
+		
+		wave_timer.wait_time = data.get("delay_per_wave", 5.0)
 		
 		var c_off = data.get("grid_center_offset")
 		GridManager.init_grid(Vector2(c_off[0], c_off[1]))
@@ -85,6 +98,9 @@ func load_level():
 	
 	LevelHud.init_hud()
 	LevelHud.open()
+	
+	BuffManager.reset_all_buffs()
+	wave_timer.start()
 
 # Start the next wave when called
 func start_next_wave():
@@ -116,27 +132,35 @@ func spawn_wave(wave_data: Array):
 		var t = dict["type"]
 		for i in range(dict["count"]):
 			spawn_enemy(t)
-			await get_tree().create_timer(dict["interval"]).timeout
+			await get_tree().create_timer(dict["interval"], false).timeout
 		
 	is_spawning = false
 	
 # Spawn the enemy
-func spawn_enemy(enemy_id: String):
+func spawn_enemy(enemy_type: String, optional_path_points: Array[Vector2] = [], is_external: bool = false):
 	if not is_instance_valid(enemy_container): return
 	
-	if not discovered_enemies.has(enemy_id):
-		discovered_enemies.push_back(enemy_id)
-		EnemyExplanation.open_for(enemy_id)
+	if not discovered_enemies.has(enemy_type):
+		discovered_enemies.push_back(enemy_type)
+		EnemyExplanation.open_for(enemy_type)
+		
+	if is_external:
+		enemies_count += 1
 	
 	var e = preload("res://scenes/enemies/base_enemy.tscn").instantiate()
-	e.enemy_type = enemy_id
+	var scr_path = "res://scripts/enemies/%s.gd" % enemy_type
+	if ResourceLoader.exists(scr_path):
+		e.set_script(load(scr_path))
 	
-	var path_cells = paths.pick_random()
-	for cell in path_cells:
-		var world_pos: Vector2 = GridManager.grid_to_world(Vector2i(cell[0], cell[1]))
-		e.path_points.append(world_pos)
+	var path_points: Array[Vector2] = optional_path_points
+	if path_points.is_empty():
+		var path_cells = paths.pick_random()
+		for cell in path_cells:
+			var world_pos: Vector2 = GridManager.grid_to_world(Vector2i(cell[0], cell[1]))
+			path_points.push_back(world_pos)
 	
 	enemy_container.add_child(e)
+	e.init(enemy_type, path_points)
 
 # On game over
 func _on_game_over():

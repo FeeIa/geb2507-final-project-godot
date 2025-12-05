@@ -3,7 +3,7 @@
 	"speed": 130,
 	"level_money_drop": 3,
 	"lives_damage": 1,
-	"resistances": {},
+	"resistances": {"bcell": -0.2},
 	"texture": "res://assets/enemies/fluvirus/sprite.png",
 	"explanation": "res://assets/enemies/fluvirus/explanation.png"
 }

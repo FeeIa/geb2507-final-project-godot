@@ -4,7 +4,10 @@ extends CanvasLayer
 signal use_consumable(id: String, c: Button)
 
 func _ready() -> void:
-	GameManager.connect("level_money_changed", _update_level_money)
+	GameManager.level_money_changed.connect(_update_level_money)
+	GameManager.lives_changed.connect(func():
+		$Lives/Amount.text = str(GameManager.lives)
+	)
 	use_consumable.connect(func(slot):
 		var id = slot.name
 		if ConsumableInventory.use_consumable(id):
@@ -25,6 +28,9 @@ func _ready() -> void:
 	)
 	$ATP.connect("mouse_exited", func():
 		Tip.close()
+	)
+	$Pause.pressed.connect(func():
+		PauseMenu.open()
 	)
 
 func update_slot(slot):

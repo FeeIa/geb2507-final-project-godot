@@ -31,6 +31,7 @@ TowerMenu="*res://scenes/towers/tower_menu.tscn"
 EnemyExplanation="*res://scenes/enemies/enemy_explanation.tscn"
 Victory="*res://scenes/ui/victory.tscn"
 Defeat="*res://scenes/ui/defeat.tscn"
+PauseMenu="*res://scenes/ui/pause_menu.tscn"
 FadeTransition="*res://scenes/ui/fade_transition.tscn"
 
 [display]

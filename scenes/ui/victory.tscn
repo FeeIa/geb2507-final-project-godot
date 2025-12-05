@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://1mawb3kcma41"]
+[gd_scene load_steps=6 format=3 uid="uid://1mawb3kcma41"]
 
 [ext_resource type="Texture2D" uid="uid://ds70y44hxx6vi" path="res://assets/ui/game_finish/victory_defeat_VICTORY_withoutbutton_greybackground.png" id="1_humpp"]
 [ext_resource type="Script" uid="uid://cengsqo4x8jpp" path="res://scripts/ui/victory.gd" id="1_xfc8j"]
 [ext_resource type="Texture2D" uid="uid://bl1xs338v5txe" path="res://assets/ui/game_finish/victory_defeat_NEXTBUTTON.png" id="2_xfc8j"]
 [ext_resource type="Texture2D" uid="uid://j4xrkfguxjk8" path="res://assets/ui/game_finish/victory_defeat_BACKBUTTON.png" id="4_xfc8j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xfc8j"]
 
 [node name="Victory" type="CanvasLayer"]
 visible = false
@@ -24,6 +26,7 @@ offset_left = 1194.0
 offset_top = 774.0
 offset_right = 1500.0
 offset_bottom = 902.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xfc8j")
 icon = ExtResource("2_xfc8j")
 flat = true
 
@@ -32,5 +35,6 @@ offset_left = 441.0
 offset_top = 771.0
 offset_right = 747.0
 offset_bottom = 900.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xfc8j")
 icon = ExtResource("4_xfc8j")
 flat = true

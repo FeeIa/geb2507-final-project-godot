@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://cwfha327jdl6u"]
+
+[ext_resource type="Script" uid="uid://bu0jlmjmrl2bc" path="res://scripts/ui/pause_menu.gd" id="1_4inpj"]
+[ext_resource type="Texture2D" uid="uid://72m6xn7av8u8" path="res://assets/ui/pause_menu/stopui_withoutbuttons.png" id="1_8uki6"]
+[ext_resource type="Texture2D" uid="uid://3k12tnoebvyr" path="res://assets/ui/pause_menu/stopui_backbutton.png" id="2_0bnpd"]
+[ext_resource type="Texture2D" uid="uid://d1roo6dkobkmf" path="res://assets/ui/pause_menu/stopui_restartbutton.png" id="4_8fwbo"]
+[ext_resource type="Texture2D" uid="uid://ioyl8623rnmn" path="res://assets/ui/misc/close_icon.png" id="5_0bnpd"]
+[ext_resource type="Texture2D" uid="uid://do8w7ksbu76k0" path="res://assets/ui/pause_menu/18aa83087de50ed3791129c90dadcb75.png" id="6_4inpj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2rlsb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4inpj"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_4inpj")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.49019608)
+
+[node name="Frame" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_8uki6")
+
+[node name="Back" type="Button" parent="."]
+process_mode = 3
+offset_left = 1071.0
+offset_top = 592.0
+offset_right = 1450.0
+offset_bottom = 750.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2rlsb")
+icon = ExtResource("2_0bnpd")
+flat = true
+
+[node name="Restart" type="Button" parent="."]
+process_mode = 3
+offset_left = 1076.0
+offset_top = 397.0
+offset_right = 1437.0
+offset_bottom = 558.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2rlsb")
+icon = ExtResource("4_8fwbo")
+flat = true
+
+[node name="Close" type="Button" parent="."]
+process_mode = 3
+offset_left = 1475.0
+offset_top = 81.0
+offset_right = 1593.0
+offset_bottom = 200.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4inpj")
+icon = ExtResource("5_0bnpd")
+flat = true
+
+[node name="GamePaused" type="TextureRect" parent="."]
+offset_left = 1094.0
+offset_top = 290.0
+offset_right = 1745.0
+offset_bottom = 415.0
+scale = Vector2(0.575, 0.575)
+texture = ExtResource("6_4inpj")

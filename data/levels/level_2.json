@@ -3,6 +3,7 @@
 	"money_gain_per_wave": 10,
 	"lives": 10,
 	"grid_center_offset": [5.25, 82.5],
+	"delay_per_wave": 5.0,
 	"available_towers": [
 		"macrophage",
 		"neutrophil",
@@ -11,7 +12,7 @@
 	],
 	"waves": [
 		[
-			{"type": "fluvirus", "count": 5, "interval": 1.0}
+			{"type": "fluvirus", "count": 5, "interval": 2.0}
 		],
 		[
 			{"type": "fluvirus", "count": 5, "interval": 1.0},
@@ -37,6 +38,9 @@
 			{"type": "fluvirus", "count": 5, "interval": 2.0},
 			{"type": "adenovirus", "count": 2, "interval": 2.0},
 			{"type": "syncytium", "count": 1, "interval": 2.0}
+		],
+		[
+			{"type": "syncytium", "count": 3, "interval": 5.0}
 		]
 	],
 	"paths": [

@@ -4,3 +4,6 @@
 
 [node name="LevelManager" type="Node"]
 script = ExtResource("1_8fe1o")
+
+[node name="WaveTimer" type="Timer" parent="."]
+one_shot = true

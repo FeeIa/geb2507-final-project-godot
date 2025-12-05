@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://drw30mlgpj6e0"]
+[gd_scene load_steps=8 format=3 uid="uid://drw30mlgpj6e0"]
 
 [ext_resource type="PackedScene" uid="uid://dahyjrhrrmadj" path="res://scenes/managers/level_manager.tscn" id="1_06ted"]
 [ext_resource type="Texture2D" uid="uid://cfjy1j5lcvcii" path="res://assets/ui/levels/level_1/map/mouth.png" id="2_dmms2"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://d3y7nav0gax2g" path="res://assets/ui/levels/level_1/map/Q_maincharacter.png" id="6_vla06"]
 [ext_resource type="PackedScene" uid="uid://dk35bfeb3sns3" path="res://scenes/enemies/enemy_container.tscn" id="7_fjy8c"]
 [ext_resource type="Texture2D" uid="uid://8lrlm8albf0r" path="res://assets/ui/levels/level_1/map/teeth.png" id="7_mohx4"]
-[ext_resource type="PackedScene" uid="uid://b8av088iu0opx" path="res://scenes/ui/hud.tscn" id="8_lxak7"]
 
 [node name="Level1" type="Node2D"]
 
@@ -41,5 +40,3 @@ texture = ExtResource("6_vla06")
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("7_mohx4")
-
-[node name="Hud" parent="." instance=ExtResource("8_lxak7")]

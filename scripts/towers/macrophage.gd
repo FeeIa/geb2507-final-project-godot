@@ -12,7 +12,8 @@ func attack():
 		pop_next_target()
 		target_queue.erase(current_target)
 		return
-	
+		
+	var og_position = current_target.global_position
 	var tween = get_tree().create_tween()
 	tween.tween_property(current_target, "global_position", global_position, 0.5)
 	tween.finished.connect(func():
@@ -24,7 +25,10 @@ func attack():
 		var rd = randf()
 		var resisted: bool = rd <= current_target.get_resistance(tower_type)
 		
-		if resisted: return
+		if resisted:
+			var back_tween = get_tree().create_tween()
+			back_tween.tween_property(current_target, "global_position", og_position, 0.25)
+			return
 			
 		current_target.die()
 		upd_sprite()

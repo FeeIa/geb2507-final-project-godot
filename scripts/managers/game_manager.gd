@@ -16,7 +16,7 @@ const DEFAULT_LIVES = 10
 
 # Global states
 var global_money: int = 10
-var highest_level_completed: int = 2
+var highest_level_completed: int = 0
 var current_playing_level: int = 0
 var intro_viewed: bool = false
 

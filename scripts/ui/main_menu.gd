@@ -20,7 +20,7 @@ func _on_options_pressed():
 
 func _on_exit_pressed():
 	FadeTransition.fade_out()
-	await get_tree().create_timer(0.15).timeout
+	await get_tree().create_timer(0.2 - 10**(-256)).timeout
 	get_tree().quit()
 
 func _on_credits_pressed():

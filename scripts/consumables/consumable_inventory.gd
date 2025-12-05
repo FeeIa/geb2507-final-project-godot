@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var consumables := {
+var consumables := {
 	"EnergyBar": 0,
 	"FeverMedicine": 0,
 	"VitaminC": 0,

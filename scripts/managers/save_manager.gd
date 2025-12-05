@@ -8,6 +8,13 @@ var save_data = {
 	"global_money": 0,
 	"intro_viewed": false,
 	
+	"consumables": {
+		"EnergyBar": 0,
+		"FeverMedicine": 0,
+		"VitaminC": 0,
+		"GoodSleep": 0
+	},
+	
 	"settings": {
 		"master_volume": 1.0,
 		"bgm_volume": 1.0,
@@ -61,13 +68,16 @@ func load_game():
 	save_game()
 	print("[SaveManager] Data loaded")
 	apply_to_game_manager()
+	apply_to_consumable_inventory()
+	apply_settings()
 	
 func apply_to_game_manager():
 	GameManager.global_money = save_data["global_money"]
 	GameManager.highest_level_completed = save_data["highest_level_completed"]
 	GameManager.intro_viewed = save_data["intro_viewed"]
-	
-	apply_settings()
+
+func apply_to_consumable_inventory():
+	ConsumableInventory.consumables = save_data["consumables"]
 
 func apply_settings():
 	var s = save_data["settings"]

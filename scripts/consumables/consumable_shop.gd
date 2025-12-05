@@ -40,6 +40,8 @@ func buy(id: String) -> bool:
 		
 	if GameManager.spend_global_money(price):
 		ConsumableInventory.add_consumable(id)
+		SaveManager.save_data["consumables"] = ConsumableInventory.consumables
+		SaveManager.save_game()
 		return true
 	else:
 		print("Not enough global money to buy consumable!")

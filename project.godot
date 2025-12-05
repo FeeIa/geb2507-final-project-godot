@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="GEB2507 Final Project"
+config/name="ImmunoDefender"
 run/main_scene="uid://wu5i6gor5t34"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://assets/enemies/default/default.svg"
+config/icon="uid://d0ki16ejxwgbg"
 
 [autoload]
 

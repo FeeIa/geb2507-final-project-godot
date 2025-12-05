@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7xb7pdx5hr3h"]
 
 [ext_resource type="Script" uid="uid://btopqjlrcbm13" path="res://scripts/enemies/enemy_explanation.gd" id="1_exujf"]
-[ext_resource type="Texture2D" uid="uid://bvhqr4pbowh4c" path="res://assets/enemies/adenovirus/explanation.png" id="1_ffi5o"]
+[ext_resource type="Texture2D" uid="uid://umkiscvejboc" path="res://assets/enemies/adenovirus/explanation.png" id="1_ffi5o"]
 [ext_resource type="Texture2D" uid="uid://ioyl8623rnmn" path="res://assets/ui/misc/close_icon.png" id="2_exujf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_exujf"]

@@ -1,5 +1,5 @@
 {
-	"explanation": "res://assets/towers/neutrophil/explanation.png",
+	"explanation": "res://assets/towers/bcell/explanation.png",
 	"props": {
 		"level_1": {
 			"damage": 2,

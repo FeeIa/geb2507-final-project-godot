@@ -17,9 +17,11 @@ config/icon="res://assets/enemies/default/default.svg"
 
 [autoload]
 
+SaveManager="*res://scripts/managers/save_manager.gd"
+AudioManager="*res://scenes/managers/audio_manager.tscn"
+GameManager="*res://scenes/managers/game_manager.tscn"
 ConsumableInventory="*res://scenes/consumables/consumable_inventory.tscn"
 ConsumableManager="*res://scenes/managers/consumable_manager.tscn"
-GameManager="*res://scenes/managers/game_manager.tscn"
 BuffManager="*res://scenes/managers/buff_manager.tscn"
 Database="*res://scenes/managers/database.tscn"
 GridManager="*res://scenes/managers/grid_manager.tscn"
@@ -32,6 +34,8 @@ EnemyExplanation="*res://scenes/enemies/enemy_explanation.tscn"
 Victory="*res://scenes/ui/victory.tscn"
 Defeat="*res://scenes/ui/defeat.tscn"
 PauseMenu="*res://scenes/ui/pause_menu.tscn"
+OptionsMenu="*res://scenes/ui/options_menu.tscn"
+Credits="*res://scenes/ui/credits.tscn"
 FadeTransition="*res://scenes/ui/fade_transition.tscn"
 
 [display]

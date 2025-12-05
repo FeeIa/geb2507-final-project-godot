@@ -7,18 +7,12 @@ extends CanvasLayer
 
 func _ready():
 	$Next.pressed.connect(func():
-		LevelHud.close()
-		TowerMenu.close()
-		EnemyExplanation.close()
-		GameManager.load_level_scene(GameManager.current_playing_level + 1)
+		GameManager.go_next_level()
 		close()
 	)
 	
 	$Back.pressed.connect(func():
-		LevelHud.close()
-		TowerMenu.close()
-		EnemyExplanation.close()
-		FadeTransition.transition_to_scene("res://scenes/ui/level_select.tscn")
+		GameManager.go_back_to_level_select()
 		close()
 	)
 

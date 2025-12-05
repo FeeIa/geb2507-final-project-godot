@@ -47,7 +47,7 @@ func generate_tower_buttons():
 		)
 		
 		icon_holder.add_child(atp)
-		
+
 func _process(_delta) -> void:
 	if not is_on: return
 	
@@ -68,6 +68,7 @@ func open_menu_for(cell: Vector2i):
 	selected_cell = cell
 	place_menu.global_position = GridManager.grid_to_world(cell)
 	place_menu.visible = true
+	highlight.visible = false
 	generate_tower_buttons()
 	
 func place_tower(tower_type: String):
@@ -100,6 +101,8 @@ func close_menu():
 	place_menu.visible = false
 	
 func turn_off():
+	close_menu()
+	highlight.visible = false
 	is_on = false
 
 # HOVER PLACEMENT VERSION

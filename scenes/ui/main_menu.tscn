@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://wu5i6gor5t34"]
+[gd_scene load_steps=8 format=3 uid="uid://wu5i6gor5t34"]
 
 [ext_resource type="Script" uid="uid://f03hpird514" path="res://scripts/ui/main_menu.gd" id="1_sl1te"]
-[ext_resource type="Texture2D" uid="uid://dae8pyuqsmtna" path="res://assets/ui/main_menu/INTERFACE_START_withoutbuttons_title.png" id="2_btxxm"]
-[ext_resource type="Texture2D" uid="uid://cfsqoq6choibn" path="res://assets/ui/main_menu/INTERFACE_START_playbutton.png" id="3_btxxm"]
-[ext_resource type="Texture2D" uid="uid://dd1dqdekt515j" path="res://assets/ui/main_menu/INTERFACE_START_optionsbutton.png" id="4_wb0q5"]
-[ext_resource type="Texture2D" uid="uid://cvboapgh3rsjl" path="res://assets/ui/main_menu/INTERFACE_START_title.png" id="7_wb0q5"]
+[ext_resource type="Texture2D" uid="uid://cn5376u3wmwub" path="res://assets/ui/main_menu/INTERFACE_START.png" id="2_uhagc"]
+[ext_resource type="Texture2D" uid="uid://bw5bbusse3o03" path="res://assets/ui/main_menu/playbutton.png" id="3_btxxm"]
+[ext_resource type="Texture2D" uid="uid://dfbf23adc8op5" path="res://assets/ui/main_menu/optionsbutton.png" id="4_wb0q5"]
+[ext_resource type="Texture2D" uid="uid://cvao4ms4g7ac2" path="res://assets/ui/main_menu/creditsbutton.png" id="5_q85j6"]
+[ext_resource type="Texture2D" uid="uid://d0x13f0sg3aao" path="res://assets/ui/main_menu/exitbutton.png" id="6_8g5eo"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uhagc"]
 
@@ -15,34 +16,44 @@ script = ExtResource("1_sl1te")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
-texture = ExtResource("2_btxxm")
+texture = ExtResource("2_uhagc")
 
 [node name="Play" type="Button" parent="."]
 layout_mode = 0
-offset_left = 108.0
-offset_top = 727.0
-offset_right = 289.0
-offset_bottom = 840.0
+offset_left = 111.0
+offset_top = 465.0
+offset_right = 1346.0
+offset_bottom = 578.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_uhagc")
 icon = ExtResource("3_btxxm")
 flat = true
 
 [node name="Options" type="Button" parent="."]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 869.0
-offset_right = 369.0
-offset_bottom = 983.0
+offset_left = 113.0
+offset_top = 594.0
+offset_right = 1348.0
+offset_bottom = 718.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_uhagc")
 icon = ExtResource("4_wb0q5")
 flat = true
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Credits" type="Button" parent="."]
 layout_mode = 0
-offset_left = 38.0
-offset_top = 45.0
-offset_right = 1355.0
-offset_bottom = 384.0
-texture = ExtResource("7_wb0q5")
+offset_left = 107.0
+offset_top = 734.0
+offset_right = 1342.0
+offset_bottom = 852.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uhagc")
+icon = ExtResource("5_q85j6")
+flat = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 842.0
+offset_right = 1341.0
+offset_bottom = 1018.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uhagc")
+icon = ExtResource("6_8g5eo")
+flat = true

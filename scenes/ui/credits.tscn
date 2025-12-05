@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=3 uid="uid://g5g03cbo4jir"]
+
+[ext_resource type="Script" uid="uid://ds4i82w4logb1" path="res://scripts/ui/credits.gd" id="1_oap8i"]
+[ext_resource type="Texture2D" uid="uid://dombgnbppwtlc" path="res://assets/ui/misc/bg.png" id="2_jkvjv"]
+[ext_resource type="Texture2D" uid="uid://ioyl8623rnmn" path="res://assets/ui/misc/close_icon.png" id="3_pqmjv"]
+[ext_resource type="Texture2D" uid="uid://cvao4ms4g7ac2" path="res://assets/ui/main_menu/creditsbutton.png" id="4_e5ls7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e5ls7"]
+
+[node name="Credits" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_oap8i")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.49019608)
+
+[node name="Frame" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_jkvjv")
+
+[node name="Close" type="Button" parent="."]
+offset_left = 1482.0
+offset_top = 82.0
+offset_right = 1600.0
+offset_bottom = 201.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_e5ls7")
+icon = ExtResource("3_pqmjv")
+flat = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 462.0
+offset_top = 449.0
+offset_right = 1521.0
+offset_bottom = 798.0
+theme_override_constants/separation = 16
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(5.4869056e-06, 0.56338274, 0.73258096, 1)
+theme_override_font_sizes/font_size = 49
+text = "Game Design: Song Yanrui & Xu Sule"
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(5.4869056e-06, 0.56338274, 0.73258096, 1)
+theme_override_font_sizes/font_size = 49
+text = "Programming: Bryan Edelson"
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(5.4869056e-06, 0.56338274, 0.73258096, 1)
+theme_override_font_sizes/font_size = 49
+text = "Artist: Xiong Jiaying"
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+offset_left = 462.0
+offset_top = 449.0
+offset_right = 1521.0
+offset_bottom = 798.0
+theme_override_constants/separation = 16
+
+[node name="Label2" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(2.3102762e-06, 0.5694851, 0.70870864, 1)
+theme_override_font_sizes/font_size = 49
+text = "Game Design:"
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(2.3102762e-06, 0.5694851, 0.70870864, 1)
+theme_override_font_sizes/font_size = 49
+text = "Programming:"
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(2.3102762e-06, 0.5694851, 0.70870864, 1)
+theme_override_font_sizes/font_size = 49
+text = "Artist:"
+vertical_alignment = 1
+
+[node name="Credits" type="TextureRect" parent="."]
+offset_left = 822.0
+offset_top = 199.0
+offset_right = 1099.0
+offset_bottom = 317.0
+texture = ExtResource("4_e5ls7")

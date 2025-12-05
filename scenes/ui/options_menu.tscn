@@ -1,0 +1,100 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4pktnlq2q6wh"]
+
+[ext_resource type="Texture2D" uid="uid://dombgnbppwtlc" path="res://assets/ui/misc/bg.png" id="1_ta2k2"]
+[ext_resource type="Script" uid="uid://rygenr0ck14g" path="res://scripts/ui/options_menu.gd" id="1_wj2x4"]
+[ext_resource type="Texture2D" uid="uid://ioyl8623rnmn" path="res://assets/ui/misc/close_icon.png" id="3_imaij"]
+[ext_resource type="Texture2D" uid="uid://dfbf23adc8op5" path="res://assets/ui/main_menu/optionsbutton.png" id="4_c4822"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c4822"]
+
+[node name="OptionsMenu" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_wj2x4")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.49019608)
+
+[node name="Frame" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_ta2k2")
+
+[node name="Close" type="Button" parent="."]
+offset_left = 1482.0
+offset_top = 82.0
+offset_right = 1600.0
+offset_bottom = 201.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c4822")
+icon = ExtResource("3_imaij")
+flat = true
+
+[node name="Options" type="TextureRect" parent="."]
+offset_left = 822.0
+offset_top = 199.0
+offset_right = 1099.0
+offset_bottom = 317.0
+texture = ExtResource("4_c4822")
+
+[node name="Container" type="VBoxContainer" parent="Options"]
+layout_mode = 0
+offset_left = -360.0
+offset_top = 209.0
+offset_right = 644.0
+offset_bottom = 558.0
+theme_override_constants/separation = 16
+
+[node name="Master" type="HBoxContainer" parent="Options/Container"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="Options/Container/Master"]
+layout_mode = 2
+theme_override_colors/font_color = Color(5.4869056e-06, 0.56338274, 0.73258096, 1)
+theme_override_font_sizes/font_size = 49
+text = "Master Volume:"
+vertical_alignment = 1
+
+[node name="MasterSlider" type="HSlider" parent="Options/Container/Master"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+
+[node name="BGM" type="HBoxContainer" parent="Options/Container"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="Options/Container/BGM"]
+layout_mode = 2
+theme_override_colors/font_color = Color(5.4869056e-06, 0.56338274, 0.73258096, 1)
+theme_override_font_sizes/font_size = 49
+text = "Music Volume:"
+vertical_alignment = 1
+
+[node name="BGMSlider" type="HSlider" parent="Options/Container/BGM"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+
+[node name="SFX" type="HBoxContainer" parent="Options/Container"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="Options/Container/SFX"]
+layout_mode = 2
+theme_override_colors/font_color = Color(5.4869056e-06, 0.56338274, 0.73258096, 1)
+theme_override_font_sizes/font_size = 49
+text = "SFX Volume:"
+vertical_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="Options/Container/SFX"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01

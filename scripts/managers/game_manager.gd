@@ -38,7 +38,6 @@ func load_level_scene(level: int):
 	else:
 		print("Please complete the previous level first!")
 		
-
 # Add level money
 # Params: amount
 func add_level_money(amount: int):
@@ -56,6 +55,8 @@ func spend_level_money(amount: int) -> bool:
 func add_global_money(amount: int):
 	global_money += amount
 	global_money_changed.emit()
+	SaveManager.save_data["global_money"] = global_money
+	SaveManager.save_game()
 	
 # Spend global mmoney
 func spend_global_money(amount: int) -> bool:
@@ -86,6 +87,8 @@ func start_next_wave():
 # Level completed/finished
 func complete_level():
 	highest_level_completed = max(highest_level_completed, current_playing_level)
+	SaveManager.save_data["highest_level_completed"] = highest_level_completed
+	SaveManager.save_game()
 	level_completed.emit()
 
 func pause_game():
@@ -93,6 +96,25 @@ func pause_game():
 	
 func unpause_game():
 	get_tree().paused = false
+
+func turn_off_all_uis_autoload():
+	LevelHud.close()
+	TowerMenu.close()
+	EnemyExplanation.close()
+	PlacementManager.close_menu()
+	PlacementManager.turn_off()
+
+func go_back_to_level_select():
+	turn_off_all_uis_autoload()
+	FadeTransition.transition_to_scene("res://scenes/ui/level_select.tscn")
+	
+func restart_current_level():
+	turn_off_all_uis_autoload()
+	load_level_scene(current_playing_level)
+
+func go_next_level():
+	turn_off_all_uis_autoload()
+	load_level_scene(current_playing_level + 1)
 
 #func _ready():
 	#load_level("level_1")

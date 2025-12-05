@@ -2,19 +2,11 @@ extends CanvasLayer
 
 func _ready():
 	$Back.pressed.connect(func():
-		LevelHud.close()
-		TowerMenu.close()
-		EnemyExplanation.close()
-		PlacementManager.close_menu()
-		PlacementManager.turn_off()
-		FadeTransition.transition_to_scene("res://scenes/ui/level_select.tscn")
+		GameManager.go_back_to_level_select()
 		close()
 	)
 	$Restart.pressed.connect(func():
-		LevelHud.close()
-		TowerMenu.close()
-		EnemyExplanation.close()
-		GameManager.load_level_scene(GameManager.current_playing_level)
+		GameManager.restart_current_level()
 		close()
 	)
 	$Close.pressed.connect(close)

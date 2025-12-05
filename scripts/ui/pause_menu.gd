@@ -5,6 +5,8 @@ func _ready():
 		LevelHud.close()
 		TowerMenu.close()
 		EnemyExplanation.close()
+		PlacementManager.close_menu()
+		PlacementManager.turn_off()
 		FadeTransition.transition_to_scene("res://scenes/ui/level_select.tscn")
 		close()
 	)

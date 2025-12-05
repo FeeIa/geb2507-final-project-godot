@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4mo6ybwwc588"]
+[gd_scene load_steps=7 format=3 uid="uid://b4mo6ybwwc588"]
 
 [ext_resource type="Script" uid="uid://c0x1tp225cplv" path="res://scripts/towers/tower_menu.gd" id="1_sg2c4"]
 [ext_resource type="Texture2D" uid="uid://ci8kri1y814e6" path="res://assets/towers/nkcell/explanation.png" id="2_vhrvr"]
 [ext_resource type="Texture2D" uid="uid://ioyl8623rnmn" path="res://assets/ui/misc/close_icon.png" id="3_bvub4"]
 [ext_resource type="Texture2D" uid="uid://u4v7ptp0sy0u" path="res://assets/ui/misc/upgrade_button.png" id="4_c8dvd"]
 [ext_resource type="Texture2D" uid="uid://bu3myyy8qdq6c" path="res://assets/ui/misc/sell_button.png" id="5_ems8k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c8dvd"]
 
 [node name="TowerMenu" type="CanvasLayer"]
 visible = false
@@ -25,6 +27,7 @@ offset_left = 1473.0
 offset_top = 84.0
 offset_right = 1591.0
 offset_bottom = 203.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c8dvd")
 icon = ExtResource("3_bvub4")
 flat = true
 
@@ -33,6 +36,7 @@ offset_left = 1001.0
 offset_top = 685.0
 offset_right = 1307.0
 offset_bottom = 826.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c8dvd")
 icon = ExtResource("4_c8dvd")
 flat = true
 
@@ -41,6 +45,7 @@ offset_left = 628.0
 offset_top = 684.0
 offset_right = 922.0
 offset_bottom = 829.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c8dvd")
 icon = ExtResource("5_ems8k")
 flat = true
 

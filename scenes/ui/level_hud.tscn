@@ -53,9 +53,9 @@ flat = true
 
 [node name="EnergyBar" type="TextureRect" parent="ConsumableSlots"]
 offset_left = 234.0
-offset_top = 864.0
+offset_top = 906.0
 offset_right = 473.0
-offset_bottom = 1038.0
+offset_bottom = 1080.0
 texture = ExtResource("5_tl4dj")
 
 [node name="Clickable" type="Button" parent="ConsumableSlots/EnergyBar"]
@@ -82,9 +82,9 @@ vertical_alignment = 1
 
 [node name="FeverMedicine" type="TextureRect" parent="ConsumableSlots"]
 offset_left = 628.0
-offset_top = 864.0
+offset_top = 906.0
 offset_right = 867.0
-offset_bottom = 1038.0
+offset_bottom = 1080.0
 texture = ExtResource("5_tl4dj")
 
 [node name="Clickable" type="Button" parent="ConsumableSlots/FeverMedicine"]
@@ -111,9 +111,9 @@ vertical_alignment = 1
 
 [node name="GoodSleep" type="TextureRect" parent="ConsumableSlots"]
 offset_left = 1104.0
-offset_top = 864.0
+offset_top = 906.0
 offset_right = 1343.0
-offset_bottom = 1038.0
+offset_bottom = 1080.0
 texture = ExtResource("5_tl4dj")
 
 [node name="Clickable" type="Button" parent="ConsumableSlots/GoodSleep"]
@@ -140,9 +140,9 @@ vertical_alignment = 1
 
 [node name="VitaminC" type="TextureRect" parent="ConsumableSlots"]
 offset_left = 1504.0
-offset_top = 864.0
+offset_top = 906.0
 offset_right = 1743.0
-offset_bottom = 1038.0
+offset_bottom = 1080.0
 texture = ExtResource("5_tl4dj")
 
 [node name="Clickable" type="Button" parent="ConsumableSlots/VitaminC"]

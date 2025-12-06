@@ -9,6 +9,7 @@ func _ready() -> void:
 		$Lives/Amount.text = str(GameManager.lives)
 	)
 	use_consumable.connect(func(slot):
+		AudioManager.play_button_click_sfx()
 		var id = slot.name
 		if ConsumableInventory.use_consumable(id):
 			var c: Button = slot.get_node("Clickable")
@@ -30,6 +31,7 @@ func _ready() -> void:
 		Tip.close()
 	)
 	$Pause.pressed.connect(func():
+		AudioManager.play_button_click_sfx()
 		PauseMenu.open()
 	)
 

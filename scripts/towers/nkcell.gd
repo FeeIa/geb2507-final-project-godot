@@ -10,6 +10,7 @@ func attack():
 		
 	var perp = Vector2(-dir.y, dir.x) * proj_offset
 	
+	AudioManager.play_sfx("res://assets/audio/sfx/laser_shot.wav")
 	spawn_proj(global_position + perp)
 	spawn_proj(global_position - perp)
 	

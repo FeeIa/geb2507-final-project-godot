@@ -1,7 +1,7 @@
 extends "res://scripts/towers/base_tower.gd"
 
 var is_digesting = false
-var digest_cooldown: int = -1
+var digest_cooldown: int
 
 func attack():
 	if is_digesting: return
@@ -13,7 +13,7 @@ func attack():
 		target_queue.erase(current_target)
 		return
 		
-	var og_position = current_target.global_position
+	var og_position = current_target.path_points[current_target.curr_path_idx]
 	var tween = get_tree().create_tween()
 	tween.tween_property(current_target, "global_position", global_position, 0.5)
 	tween.finished.connect(func():
@@ -30,20 +30,23 @@ func attack():
 			back_tween.tween_property(current_target, "global_position", og_position, 0.25)
 			return
 			
+		AudioManager.play_sfx("res://assets/audio/sfx/chomp.wav")
 		current_target.die()
 		upd_sprite()
-		if kill_count >= 2:
-			start_digest_cooldown()
+		start_digest_cooldown()
 	)
 	
 func start_digest_cooldown():
-	if digest_cooldown <= -1:
-		digest_cooldown = props.get("digest_cooldown")
+	digest_cooldown = props.get("digest_cooldown")
 	
-	is_digesting = true
+	if kill_count >= 2:
+		is_digesting = true
+		
 	get_tree().create_timer(digest_cooldown).timeout.connect(func():
-		is_digesting = false
-		kill_count = 0
+		kill_count -= 1
+		if kill_count < 2:
+			is_digesting = false
+			
 		upd_sprite()
 	)
 	

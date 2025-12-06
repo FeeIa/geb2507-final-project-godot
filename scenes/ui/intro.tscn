@@ -42,3 +42,14 @@ shape = SubResource("RectangleShape2D_mcgs1")
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_i8df0")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 622.0
+offset_top = 914.0
+offset_right = 1304.0
+offset_bottom = 982.0
+theme_override_colors/font_color = Color(2.3102762e-06, 0.5694851, 0.70870864, 1)
+theme_override_font_sizes/font_size = 36
+text = "Click anywhere to continue..."
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -120,4 +120,6 @@ func on_death():
 # Handle what happens when the enemy reaches player's base
 func reached_base():
 	GameManager.lose_life(lives_damage)
+	var i = randi() % 3 + 1
+	AudioManager.play_sfx("res://assets/audio/sfx/cough_female_%d.wav" % i)
 	queue_free()

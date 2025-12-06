@@ -23,7 +23,10 @@ func init(tower_cont: Node2D, cell_sz: int):
 func _ready() -> void:
 	highlight.visible = false
 		
-	$PlaceMenu/Close.pressed.connect(close_menu)
+	$PlaceMenu/Close.pressed.connect(func():
+		AudioManager.play_button_click_sfx()
+		close_menu()
+	)
 	
 func generate_tower_buttons():
 	for c in icon_holder.get_children():
@@ -65,6 +68,7 @@ func _process(_delta) -> void:
 	highlight.queue_redraw()
 
 func open_menu_for(cell: Vector2i):
+	AudioManager.play_button_click_sfx()
 	selected_cell = cell
 	place_menu.global_position = GridManager.grid_to_world(cell)
 	place_menu.visible = true
@@ -81,6 +85,7 @@ func place_tower(tower_type: String):
 		
 	# If not enough money, then do nothing
 	if !GameManager.spend_level_money(Database.get_tower_data(tower_type).get("props").get("level_1").get("cost")):
+		AudioManager.play_sfx("res://assets/audio/sfx/reject.wav")
 		print("Not enough money to place!")
 		return
 		
@@ -94,6 +99,7 @@ func place_tower(tower_type: String):
 	tower_container.add_child(tower_instance)
 	tower_instance.init(tower_type, selected_cell)
 	
+	AudioManager.play_sfx("res://assets/audio/sfx/place_down.wav")
 	close_menu()
 	
 func close_menu():

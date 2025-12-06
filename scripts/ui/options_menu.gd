@@ -15,7 +15,10 @@ func _ready():
 	master_slider.value_changed.connect(_on_master_slider_changed)
 	bgm_slider.value_changed.connect(_on_bgm_slider_changed)
 	sfx_slider.value_changed.connect(_on_sfx_slider_changed)
-	$Close.pressed.connect(close)
+	$Close.pressed.connect(func():
+		AudioManager.play_button_click_sfx()
+		close()
+	)
 	
 func _on_master_slider_changed(val):
 	SaveManager.save_data["settings"]["master_volume"] = val

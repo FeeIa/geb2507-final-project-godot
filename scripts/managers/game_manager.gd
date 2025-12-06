@@ -26,6 +26,9 @@ var lives: int = 0
 var current_wave: int = 0
 var money_gain_per_wave: int = 0
 
+func _ready():
+	AudioManager.play_bgm("res://assets/audio/music/Home.mp3")
+
 # Load level scene
 # Params: level_name
 func load_level_scene(level: int):

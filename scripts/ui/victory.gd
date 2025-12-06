@@ -7,11 +7,13 @@ extends CanvasLayer
 
 func _ready():
 	$Next.pressed.connect(func():
+		AudioManager.play_button_click_sfx()
 		GameManager.go_next_level()
 		close()
 	)
 	
 	$Back.pressed.connect(func():
+		AudioManager.play_button_click_sfx()
 		GameManager.go_back_to_level_select()
 		close()
 	)
@@ -25,6 +27,7 @@ func open(pass_lvl: int):
 		3:
 			victory_logo.texture = exc
 		
+	AudioManager.play_sfx("res://assets/audio/sfx/victory.wav")
 	visible = true
 	
 func close():

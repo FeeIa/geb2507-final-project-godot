@@ -6,7 +6,9 @@
 script = ExtResource("1_aybmh")
 
 [node name="BGMPlayer" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 bus = &"BGM"
 
 [node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 bus = &"SFX"

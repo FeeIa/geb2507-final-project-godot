@@ -7,6 +7,7 @@ func attack():
 	proj.damage = curr_damage
 	proj.speed = 750
 	proj.global_position = global_position
+	AudioManager.play_sfx("res://assets/audio/sfx/bullet_shot.wav")
 	get_parent().add_child(proj)
 	proj.change_visual(textures["base"], Vector2(100, 100))
 

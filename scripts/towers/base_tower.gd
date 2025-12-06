@@ -63,6 +63,7 @@ func init(type: String, cell_ref: Vector2i = Vector2i(-1, -1)):
 	await get_tree().create_timer(0.1).timeout
 	$Sprite2D/Area2D.connect("input_event", func(_viewport, event, _shape_idx):
 		if event is InputEventMouseButton and event.pressed:
+			AudioManager.play_button_click_sfx()
 			TowerMenu.open_for(self)
 	)
 
@@ -140,19 +141,20 @@ func can_upgrade() -> bool:
 func get_next_level_cost() -> int:
 	return data.get("props")["level_%d" % (level + 1)]["cost"]
 	
-func upgrade():
+func upgrade() -> bool:
 	if not can_upgrade():
 		print("No more upgrades. Max already reached!")
-		return
+		return false
 		
 	var next_cost = data.get("props")["level_%d" % (level + 1)]["cost"]
 	if GameManager.level_money < next_cost:
 		print("Not enough ATP to upgrade!")
-		return
+		return false
 		
 	GameManager.spend_level_money(next_cost)
 	level += 1
 	load_stats()
+	return true
 
 # Sell value is half the cost
 func sell_value() -> int:

@@ -15,10 +15,12 @@ func _ready():
 		amt.text = "x" + str(ConsumableInventory.get_consumable_cnt(id))
 		
 		item.pressed.connect(func():
+			AudioManager.play_button_click_sfx()
 			ConsumableShop.open(id)
 		)
 	
 	$Start.pressed.connect(func():
+		AudioManager.play_button_click_sfx()
 		FadeTransition.transition_to_scene("res://scenes/levels/level_1/map.tscn")
 	)
 	

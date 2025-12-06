@@ -5,18 +5,26 @@ var selected_tower = null
 func _ready() -> void:
 	$Upgrade.pressed.connect(func():
 		if not selected_tower: return
-		selected_tower.upgrade()
+		if selected_tower.upgrade():
+			AudioManager.play_sfx("res://assets/audio/sfx/buy_something.wav")
+		else:
+			AudioManager.play_sfx("res://assets/audio/sfx/reject.wav")
+			
 		update_stats()
 	)
 	$Sell.pressed.connect(func():
 		if not selected_tower: return
+		AudioManager.play_button_click_sfx()
 		var val = selected_tower.sell_value()
 		GameManager.add_level_money(val)
 		GridManager.free_cell(selected_tower.cell)
 		selected_tower.queue_free()
 		close()
 	)
-	$Close.pressed.connect(close)
+	$Close.pressed.connect(func():
+		AudioManager.play_button_click_sfx()
+		close()
+	)
 	BuffManager.tower_buffs_changed.connect(update_stats)
 
 func open_for(tower):

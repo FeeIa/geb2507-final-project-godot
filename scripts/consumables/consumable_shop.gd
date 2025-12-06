@@ -11,7 +11,10 @@ var prev_node = null
 signal buy_req(consumable_id: String)
 
 func _ready():
-	$Close.pressed.connect(close)
+	$Close.pressed.connect(func():
+		AudioManager.play_button_click_sfx()
+		close()
+	)
 	buy_req.connect(buy)
 	for desc: TextureRect in $Descriptions.get_children():
 		var b: Button = desc.get_node("Button")
@@ -35,6 +38,7 @@ func open(consumable_name: String):
 func buy(id: String) -> bool:
 	var price = COSTS.get(id, -1)
 	if price <= -1:
+		AudioManager.play_sfx("res://assets/audio/sfx/reject.wav")
 		print("[ERROR] Attempted to buy a non-existent consumable " + id)
 		return false
 		
@@ -42,8 +46,10 @@ func buy(id: String) -> bool:
 		ConsumableInventory.add_consumable(id)
 		SaveManager.save_data["consumables"] = ConsumableInventory.consumables
 		SaveManager.save_game()
+		AudioManager.play_sfx("res://assets/audio/sfx/buy_something.wav")
 		return true
 	else:
+		AudioManager.play_sfx("res://assets/audio/sfx/reject.wav")
 		print("Not enough global money to buy consumable!")
 		return false
 

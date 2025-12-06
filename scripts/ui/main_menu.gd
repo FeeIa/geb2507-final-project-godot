@@ -10,18 +10,22 @@ func _ready():
 	options.pressed.connect(_on_options_pressed)
 	exit.pressed.connect(_on_exit_pressed)
 	credits.pressed.connect(_on_credits_pressed)
-	AudioManager.play_bgm("res://assets/music/test_pou_music_lol.mp3")
 	
 func _on_play_pressed():
+	AudioManager.play_button_click_sfx()
 	FadeTransition.transition_to_scene("res://scenes/ui/level_select.tscn")
 	
 func _on_options_pressed():
+	AudioManager.play_button_click_sfx()
 	OptionsMenu.open()
 
 func _on_exit_pressed():
+	AudioManager.play_button_click_sfx()
 	FadeTransition.fade_out()
-	await get_tree().create_timer(0.2 - 10**(-256)).timeout
+	await get_tree().create_timer(0.195).timeout
 	get_tree().quit()
 
 func _on_credits_pressed():
+	AudioManager.play_button_click_sfx()
 	Credits.open()
+	

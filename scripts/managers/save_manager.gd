@@ -5,7 +5,7 @@ const SAVE_PATH = "user://game_save.json"
 
 var save_data = {
 	"highest_level_completed": 0,
-	"global_money": 0,
+	"global_money": 3,
 	"intro_viewed": false,
 	
 	"consumables": {

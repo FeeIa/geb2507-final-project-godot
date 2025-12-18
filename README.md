@@ -9,7 +9,7 @@ This was a final project in Fall 2025 of the following:
 - Instructor: Sahba Zojaji
 - University: The Chinese University of Hong Kong, Shenzhen
 
-## Team
+## Team (Group 5)
 - Xu Sule (124020406, 124020406@link.cuhk.edu.cn) - Narrative & Content Writer
 - Song Yanrui (123020232, 123020232@link.cuhk.edu.cn) - Gameplay & Balancing Lead
 - Xiong Jiaying (122020227, 122020227@link.cuhk.edu.cn) - Asset & UI Artist
@@ -22,7 +22,7 @@ This was a final project in Fall 2025 of the following:
 
 ## Run in Godot
 - Engine: Godot 4.5
-- Clone this repository as a ZIP file, then extract it as a folder.
+- Clone this repository or download it as a ZIP file, then extract it as a folder.
 - Open the extracted folder in Godot.
 - Click the Run button to launch the main scene of the game.
 

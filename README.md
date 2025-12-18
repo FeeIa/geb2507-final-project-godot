@@ -49,7 +49,9 @@ This was a final project in Fall 2025 of the following:
 - Observed that players engaged most when the escalation curve surfaced new abilities gradually.
 
 ## Project Repository
-The project repository can be found here: https://github.com/FeeIa/geb2507-final-project-godot. The root is the entire game's project folder and is the root path to be exported to Godot.
+The project repository can be found here: https://github.com/FeeIa/geb2507-final-project-godot
+
+The root is the entire game's project folder and is the root path to be exported to Godot.
 - `builds/web` - Web export (used for Netlify or GitHub Pages deployment)
 - `builds/pc.zip`, `builds/android.zip` - Desktop/Android builds
 - `scenes`, `scripts`, `assets` - Godot project content
